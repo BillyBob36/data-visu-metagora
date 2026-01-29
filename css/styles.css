@@ -3,9 +3,10 @@
    ============================================ */
 
 :root {
-    --primary-pink: #FF69B4;
-    --primary-pink-light: #FF85C8;
+    --primary-pink: #FF1493;
+    --primary-pink-light: #FF69B4;
     --primary-pink-glow: #FFB6D9;
+    --primary-pink-bright: #FF00FF;
     --accent-blue: #312478;
     --dark-bg: #1A1A1A;
     --darker-bg: #0D0D0D;
@@ -156,13 +157,12 @@ html, body {
 }
 
 .dialogue-text .highlight {
-    color: var(--primary-pink);
-    font-weight: 600;
-    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-pink-glow) 50%, var(--primary-pink) 100%);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-pink-bright) 0%, var(--primary-pink) 50%, var(--primary-pink-bright) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+    filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.7)) drop-shadow(0 0 20px rgba(255, 0, 255, 0.3));
 }
 
 .typing-cursor {
@@ -474,14 +474,14 @@ html, body {
 .rank-subtitle {
     font-family: 'JetBrains Mono', monospace;
     font-size: 18px;
-    font-weight: 500;
-    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-pink-glow) 50%, var(--primary-pink) 100%);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-pink-bright) 0%, var(--primary-pink) 50%, var(--primary-pink-bright) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 25px rgba(255, 105, 180, 0.6);
+    letter-spacing: 3px;
+    filter: drop-shadow(0 0 15px rgba(255, 20, 147, 0.8)) drop-shadow(0 0 30px rgba(255, 0, 255, 0.4));
 }
 
 /* ============================================
