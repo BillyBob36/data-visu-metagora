@@ -319,20 +319,34 @@ html, body {
     text-align: center;
 }
 
-/* Avatar minimized state for radar chart slide */
+/* Avatar size transitions */
 .avatar-zone {
     transition: all 0.4s ease;
 }
 
-.avatar-zone.minimized {
+/* Slide 1 (stats): reduce by 20% */
+.avatar-zone.reduced {
     justify-content: center;
     padding-right: 0;
 }
 
-.avatar-zone.minimized .avatar-container {
+.avatar-zone.reduced .avatar-container {
     width: 240px;
     height: 240px;
     border-width: 3px;
+}
+
+/* Slide 2 (radar): minimize and shift right */
+.avatar-zone.minimized {
+    justify-content: center;
+    padding-right: 0;
+    transform: translateX(calc(300px - 70px));
+}
+
+.avatar-zone.minimized .avatar-container {
+    width: 140px;
+    height: 140px;
+    border-width: 2px;
 }
 
 /* ============================================
