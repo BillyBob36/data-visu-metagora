@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /s \"C:\\\\Users\\\\lamid\\\\CascadeProjects\\\\avalution2\")",
+      "Bash(dir:*)"
+    ]
+  }
+}

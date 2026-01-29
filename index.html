@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CyberMeteo - Security Scorecard</title>
+
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-pixels">
+            <div class="pixel"></div>
+            <div class="pixel"></div>
+            <div class="pixel"></div>
+            <div class="pixel"></div>
+            <div class="pixel"></div>
+            <div class="pixel"></div>
+            <div class="pixel"></div>
+            <div class="pixel"></div>
+        </div>
+
+        <div class="loading-logo">
+            <div class="loading-logo-icon">CM</div>
+            <span class="loading-logo-text">CyberMeteo</span>
+        </div>
+
+        <div class="loading-terminal">
+            <div class="terminal-header">
+                <div class="terminal-dot red"></div>
+                <div class="terminal-dot yellow"></div>
+                <div class="terminal-dot green"></div>
+            </div>
+            <div class="terminal-content" id="terminalContent">
+                <div class="terminal-line" id="termLine0">
+                    <span class="terminal-prompt">&gt;</span>
+                    <span>Initialisation système...</span>
+                    <span class="terminal-status">EN COURS</span>
+                </div>
+            </div>
+            
+            <!-- Language & Voice Selection -->
+            <div class="i18n-selectors" id="i18nSelectors" style="display: none;">
+                <div class="selector-row">
+                    <span class="selector-label">Langue</span>
+                    <div class="selector-input">
+                        <select id="languageSelect" class="cyber-select"></select>
+                    </div>
+                </div>
+                <div class="selector-row">
+                    <span class="selector-label">Voix</span>
+                    <div class="selector-input">
+                        <select id="voiceSelect" class="cyber-select"></select>
+                        <button id="previewVoiceBtn" class="preview-btn" title="Aperçu">▶</button>
+                    </div>
+                </div>
+                <button id="startExperienceBtn" class="start-btn">Démarrer l'expérience</button>
+            </div>
+            
+            <div class="loading-progress">
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="progressBarFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">Préparation de l'expérience...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background grid -->
+    <div class="bg-grid"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header-bar">
+            <div class="logo">
+                <div class="logo-icon">CM</div>
+                <span class="logo-text">CyberMeteo</span>
+            </div>
+            <div class="company-badge">FILHET-ALLARD SA</div>
+        </header>
+
+        <!-- Main layout -->
+        <main class="main-layout">
+            <!-- Dialogue zone (TOP) -->
+            <div class="dialogue-zone">
+                <div class="dialogue-box">
+                    <div class="dialogue-text" id="dialogueText"></div>
+                    <div class="choices-container" id="choicesContainer"></div>
+                </div>
+                <div class="click-hint" id="clickHint">Cliquez pour continuer...</div>
+            </div>
+
+            <!-- Slides container (MIDDLE) -->
+            <div class="slides-container">
+                <!-- Slide 0: Welcome with score -->
+                <div class="slide active" data-slide="0">
+                    <div class="slide-content">
+                        <div class="score-big fade-in">
+                            <div class="hexagon-container">
+                                <svg viewBox="0 0 100 115">
+                                    <polygon points="50 0, 100 28.75, 100 86.25, 50 115, 0 86.25, 0 28.75"/>
+                                </svg>
+                                <span class="hex-letter">B</span>
+                            </div>
+                            <span class="score-value">82</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 1: All indicators -->
+                <div class="slide" data-slide="1">
+                    <div class="slide-content">
+                        <div class="indicators-mini">
+                            <div class="indicator-mini highlight-good">
+                                <div class="ind-grade grade-a">A</div>
+                                <div class="ind-name" data-i18n="indEndpoint">Endpoint</div>
+                                <div class="ind-score color-a">100</div>
+                            </div>
+                            <div class="indicator-mini highlight-good">
+                                <div class="ind-grade grade-a">A</div>
+                                <div class="ind-name" data-i18n="indIpRep">IP Rep</div>
+                                <div class="ind-score color-a">100</div>
+                            </div>
+                            <div class="indicator-mini highlight-good">
+                                <div class="ind-grade grade-a">A</div>
+                                <div class="ind-name" data-i18n="indCubit">Cubit</div>
+                                <div class="ind-score color-a">100</div>
+                            </div>
+                            <div class="indicator-mini highlight-good">
+                                <div class="ind-grade grade-a">A</div>
+                                <div class="ind-name" data-i18n="indHacker">Hacker</div>
+                                <div class="ind-score color-a">100</div>
+                            </div>
+                            <div class="indicator-mini highlight-good">
+                                <div class="ind-grade grade-a">A</div>
+                                <div class="ind-name" data-i18n="indInfoLeak">Info Leak</div>
+                                <div class="ind-score color-a">100</div>
+                            </div>
+                            <div class="indicator-mini highlight-good">
+                                <div class="ind-grade grade-a">A</div>
+                                <div class="ind-name" data-i18n="indSocialEng">Social Eng</div>
+                                <div class="ind-score color-a">100</div>
+                            </div>
+                            <div class="indicator-mini highlight-good">
+                                <div class="ind-grade grade-a">A</div>
+                                <div class="ind-name" data-i18n="indPatching">Patching</div>
+                                <div class="ind-score color-a">92</div>
+                            </div>
+                            <div class="indicator-mini highlight-good">
+                                <div class="ind-grade grade-a">A</div>
+                                <div class="ind-name" data-i18n="indDns">DNS</div>
+                                <div class="ind-score color-a">90</div>
+                            </div>
+                            <div class="indicator-mini">
+                                <div class="ind-grade grade-c">C</div>
+                                <div class="ind-name" data-i18n="indAppSec">App Sec</div>
+                                <div class="ind-score color-c">79</div>
+                            </div>
+                            <div class="indicator-mini highlight-bad">
+                                <div class="ind-grade grade-f">F</div>
+                                <div class="ind-name" data-i18n="indNetwork">Network</div>
+                                <div class="ind-score color-f">49</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Vulnerabilities -->
+                <div class="slide" data-slide="2">
+                    <div class="slide-content">
+                        <div class="vuln-row">
+                            <div class="vuln-stat">
+                                <div class="vuln-num color-b">1</div>
+                                <div class="vuln-label" data-i18n="vulnOpenPorts">Ports ouverts</div>
+                            </div>
+                            <div class="vuln-stat">
+                                <div class="vuln-num color-c">19</div>
+                                <div class="vuln-label" data-i18n="vulnSiteVulns">Vulnérabilités</div>
+                            </div>
+                            <div class="vuln-stat">
+                                <div class="vuln-num color-a">0</div>
+                                <div class="vuln-label" data-i18n="vulnMalware">Malware</div>
+                            </div>
+                            <div class="vuln-stat">
+                                <div class="vuln-num color-a">0</div>
+                                <div class="vuln-label" data-i18n="vulnLeakedInfo">Fuites info</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Radar chart -->
+                <div class="slide" data-slide="3">
+                    <div class="slide-content">
+                        <div class="chart-mini">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4: Final choices -->
+                <div class="slide" data-slide="4">
+                    <div class="slide-content">
+                        <div class="score-big">
+                            <div class="hexagon-container">
+                                <svg viewBox="0 0 100 115">
+                                    <polygon points="50 0, 100 28.75, 100 86.25, 50 115, 0 86.25, 0 28.75"/>
+                                </svg>
+                                <span class="hex-letter">B</span>
+                            </div>
+                            <span class="score-value">82</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Avatar zone (BOTTOM) -->
+            <div class="avatar-zone">
+                <div class="avatar-container" id="avatarContainer">
+                    <img id="avatarImgBack" alt="Avatar Background" style="display: none;">
+                    <img id="avatarImg" alt="Avatar" style="display: none;">
+                    <div class="avatar-placeholder" id="avatarPlaceholder">Avatar<br>Météo</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Progress dots -->
+        <div class="progress-dots" id="progressDots">
+            <div class="dot active" data-dot="0"></div>
+            <div class="dot" data-dot="1"></div>
+            <div class="dot" data-dot="2"></div>
+            <div class="dot" data-dot="3"></div>
+            <div class="dot" data-dot="4"></div>
+        </div>
+
+
+        <!-- Loading indicator -->
+        <div class="loading-indicator" id="loadingIndicator">
+            <div class="loading-spinner"></div>
+            <span>Chargement...</span>
+        </div>
+    </div>
+
+    <!-- Scripts (order matters) -->
+    <script src="js/data.js"></script>
+    <script src="js/i18n-config.js"></script>
+    <script src="js/translation-service.js"></script>
+    <script src="js/audio-cache.js"></script>
+    <script src="js/avatar-controller.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/narrative-controller.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
