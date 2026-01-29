@@ -327,14 +327,12 @@ html, body {
 .avatar-zone.minimized {
     justify-content: center;
     padding-right: 0;
-    transform: translateX(calc(300px - 70px));
 }
 
 .avatar-zone.minimized .avatar-container {
-    width: 140px;
-    height: 140px;
-    border-width: 2px;
-    box-shadow: 0 0 15px rgba(162, 20, 99, 0.3);
+    width: 240px;
+    height: 240px;
+    border-width: 3px;
 }
 
 /* ============================================
