@@ -240,20 +240,13 @@ class NarrativeController {
         this.hideClickHint();
         this.hideChoices();
 
-        // Handle avatar size changes
+        // Handle avatar size for radar chart slide
         const avatarZone = document.querySelector('.avatar-zone');
         if (avatarZone) {
-            // Slide 1: stats grid - reduce avatar by 20%
-            if (this.currentSlide === 1) {
+            if (this.currentSlide === 2) {
                 avatarZone.classList.add('minimized');
-            }
-            // Slide 2: radar chart - keep normal size but init chart
-            else if (this.currentSlide === 2) {
-                avatarZone.classList.remove('minimized');
                 setTimeout(() => initRadarChart(), 100);
-            }
-            // Other slides: normal size
-            else {
+            } else {
                 avatarZone.classList.remove('minimized');
             }
         }
