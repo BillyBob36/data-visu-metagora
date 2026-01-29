@@ -1,10 +1,11 @@
 /* ============================================
-   CYBERMETEO - SECURITY SCORECARD DASHBOARD
+   BILANMETAGORA - SALES SIMULATION SCORECARD
    ============================================ */
 
 :root {
-    --primary-orange: #E87B35;
-    --primary-orange-light: #F5A623;
+    --primary-pink: #A21463;
+    --primary-pink-light: #C91A7D;
+    --accent-blue: #312478;
     --dark-bg: #1A1A1A;
     --darker-bg: #0D0D0D;
     --card-bg: rgba(36, 36, 36, 0.95);
@@ -16,7 +17,6 @@
     --grade-b: #FFC107;
     --grade-c: #FF9800;
     --grade-f: #F44336;
-    --accent-cyan: #00D4FF;
 }
 
 * {
@@ -43,8 +43,8 @@ html, body {
     width: 100%;
     height: 100%;
     background-image:
-        linear-gradient(rgba(232, 123, 53, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(232, 123, 53, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(162, 20, 99, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(162, 20, 99, 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
     pointer-events: none;
     z-index: 0;
@@ -83,7 +83,7 @@ html, body {
 .logo-icon {
     width: 28px;
     height: 28px;
-    background: linear-gradient(135deg, var(--primary-orange), var(--primary-orange-light));
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-pink-light));
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -97,7 +97,7 @@ html, body {
     font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
     font-weight: 600;
-    color: var(--primary-orange);
+    color: var(--primary-pink);
 }
 
 .company-badge {
@@ -138,13 +138,13 @@ html, body {
 
 .dialogue-box {
     background: var(--card-bg);
-    border: 1px solid var(--primary-orange);
+    border: 1px solid var(--primary-pink);
     border-radius: 12px;
     padding: 12px 20px;
     max-width: 600px;
     width: 100%;
     min-height: 80px;
-    box-shadow: 0 4px 20px rgba(232, 123, 53, 0.2);
+    box-shadow: 0 4px 20px rgba(162, 20, 99, 0.2);
 }
 
 .dialogue-text {
@@ -155,7 +155,7 @@ html, body {
 }
 
 .dialogue-text .highlight {
-    color: var(--primary-orange);
+    color: var(--primary-pink);
     font-weight: 600;
 }
 
@@ -163,7 +163,7 @@ html, body {
     display: inline-block;
     width: 2px;
     height: 14px;
-    background: var(--primary-orange);
+    background: var(--primary-pink);
     margin-left: 2px;
     animation: blink 1s infinite;
     vertical-align: middle;
@@ -202,8 +202,8 @@ html, body {
 }
 
 .choice-btn:hover {
-    border-color: var(--primary-orange);
-    background: rgba(232, 123, 53, 0.1);
+    border-color: var(--primary-pink);
+    background: rgba(162, 20, 99, 0.1);
     transform: translateY(-2px);
 }
 
@@ -277,12 +277,12 @@ html, body {
     width: 280px;
     height: 280px;
     background: white;
-    border: 3px solid var(--primary-orange);
+    border: 3px solid var(--primary-pink);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 30px rgba(232, 123, 53, 0.4);
+    box-shadow: 0 0 30px rgba(162, 20, 99, 0.4);
     overflow: hidden;
     transition: all 0.4s ease;
 }
@@ -328,7 +328,7 @@ html, body {
     width: 140px;
     height: 140px;
     border-width: 2px;
-    box-shadow: 0 0 15px rgba(232, 123, 53, 0.3);
+    box-shadow: 0 0 15px rgba(162, 20, 99, 0.3);
 }
 
 /* ============================================
@@ -449,6 +449,99 @@ html, body {
 .color-f { color: var(--grade-f); }
 
 /* ============================================
+   RANK INFO (Slide 0)
+   ============================================ */
+.rank-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.rank-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--grade-b);
+    text-shadow: 0 0 30px rgba(255, 193, 7, 0.4);
+}
+
+.rank-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--primary-pink);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ============================================
+   STATS GRID (Slide 1)
+   ============================================ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.stat-box {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 20px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    border-color: var(--primary-pink);
+    box-shadow: 0 0 15px rgba(162, 20, 99, 0.2);
+}
+
+.stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+@media (max-width: 600px) {
+    .rank-title {
+        font-size: 32px;
+    }
+    
+    .rank-subtitle {
+        font-size: 14px;
+    }
+    
+    .stats-grid {
+        gap: 10px;
+        max-width: 320px;
+    }
+    
+    .stat-box {
+        padding: 15px 10px;
+    }
+    
+    .stat-value {
+        font-size: 28px;
+    }
+    
+    .stat-label {
+        font-size: 9px;
+    }
+}
+
+/* ============================================
    CHART
    ============================================ */
 .chart-mini {
@@ -459,13 +552,13 @@ html, body {
     margin-top: -25px;
 }
 
-/* Slide 3 (radar chart) specific positioning */
-.slide[data-slide="3"] {
+/* Slide 2 (radar chart) specific positioning */
+.slide[data-slide="2"] {
     align-items: flex-start;
     padding-top: 0;
 }
 
-.slide[data-slide="3"] .slide-content {
+.slide[data-slide="2"] .slide-content {
     margin-top: 0;
 }
 
@@ -526,8 +619,8 @@ html, body {
 }
 
 .dot.active {
-    background: var(--primary-orange);
-    box-shadow: 0 0 10px var(--primary-orange);
+    background: var(--primary-pink);
+    box-shadow: 0 0 10px var(--primary-pink);
 }
 
 .dot.completed {
@@ -569,12 +662,12 @@ html, body {
     left: 50%;
     transform: translateX(-50%);
     background: var(--card-bg);
-    border: 1px solid var(--primary-orange);
+    border: 1px solid var(--primary-pink);
     border-radius: 20px;
     padding: 6px 16px;
     font-size: 11px;
     font-family: 'JetBrains Mono', monospace;
-    color: var(--primary-orange);
+    color: var(--primary-pink);
     z-index: 200;
     display: none;
 }
@@ -589,7 +682,7 @@ html, body {
     width: 12px;
     height: 12px;
     border: 2px solid var(--card-border);
-    border-top-color: var(--primary-orange);
+    border-top-color: var(--primary-pink);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -632,7 +725,7 @@ html, body {
 .loading-logo-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, var(--primary-orange), var(--primary-orange-light));
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-pink-light));
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -645,15 +738,15 @@ html, body {
 }
 
 @keyframes logoGlow {
-    0%, 100% { box-shadow: 0 0 20px rgba(232, 123, 53, 0.3); }
-    50% { box-shadow: 0 0 40px rgba(232, 123, 53, 0.6); }
+    0%, 100% { box-shadow: 0 0 20px rgba(162, 20, 99, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(162, 20, 99, 0.6); }
 }
 
 .loading-logo-text {
     font-family: 'JetBrains Mono', monospace;
     font-size: 28px;
     font-weight: 600;
-    color: var(--primary-orange);
+    color: var(--primary-pink);
 }
 
 /* Retro terminal animation */
@@ -704,7 +797,7 @@ html, body {
 }
 
 .terminal-line.loading .terminal-status {
-    color: var(--primary-orange);
+    color: var(--primary-pink);
     animation: blink 1s infinite;
 }
 
@@ -713,7 +806,7 @@ html, body {
 }
 
 .terminal-prompt {
-    color: var(--primary-orange);
+    color: var(--primary-pink);
 }
 
 .terminal-status {
@@ -741,11 +834,11 @@ html, body {
 
 .progress-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-orange), var(--primary-orange-light));
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-pink-light));
     border-radius: 2px;
     width: 0%;
     transition: width 0.3s ease;
-    box-shadow: 0 0 10px rgba(232, 123, 53, 0.5);
+    box-shadow: 0 0 10px rgba(162, 20, 99, 0.5);
 }
 
 .progress-text {
@@ -821,7 +914,7 @@ html, body {
 
 .cyber-select:hover,
 .cyber-select:focus {
-    border-color: var(--primary-orange);
+    border-color: var(--primary-pink);
     outline: none;
 }
 
@@ -839,7 +932,7 @@ html, body {
     background: transparent;
     border: 1px solid var(--card-border);
     border-radius: 4px;
-    color: var(--primary-orange);
+    color: var(--primary-pink);
     cursor: pointer;
     transition: all 0.2s;
     font-size: 14px;
@@ -850,8 +943,8 @@ html, body {
 }
 
 .preview-btn:hover {
-    background: rgba(232, 123, 53, 0.15);
-    border-color: var(--primary-orange);
+    background: rgba(162, 20, 99, 0.15);
+    border-color: var(--primary-pink);
 }
 
 .preview-btn:disabled {
@@ -865,7 +958,7 @@ html, body {
     height: 48px;
     margin-top: 24px;
     padding: 0 24px;
-    background: linear-gradient(135deg, var(--primary-orange), var(--primary-orange-light));
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-pink-light));
     border: none;
     border-radius: 6px;
     color: var(--darker-bg);
@@ -881,7 +974,7 @@ html, body {
 
 .start-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(232, 123, 53, 0.4);
+    box-shadow: 0 4px 15px rgba(162, 20, 99, 0.4);
 }
 
 .start-btn:disabled {
@@ -903,7 +996,7 @@ html, body {
     position: absolute;
     width: 4px;
     height: 4px;
-    background: var(--primary-orange);
+    background: var(--primary-pink);
     opacity: 0.2;
     animation: pixelFloat 3s ease-in-out infinite;
 }

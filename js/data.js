@@ -1,92 +1,71 @@
 /* ============================================
-   CYBERMETEO - DATA CONFIGURATION
+   BILANMETAGORA - DATA CONFIGURATION
    ============================================ */
 
-// Company and report data
+// Trainee and report data
 const REPORT_DATA = {
-    company: {
-        name: "FILHET-ALLARD SA",
-        domain: "filhetallard.com",
-        contact: "Bertrand",
-        contactRole: "responsable de la sécurité"
+    trainee: {
+        name: "Alexandre",
+        role: "Commercial Junior"
     },
     report: {
-        date: "11 octobre 2021",
-        generatedBy: "SecurityScorecard"
+        date: "29 janvier 2026",
+        generatedBy: "Metagora"
     },
-    score: {
-        value: 82,
+    rank: {
         grade: "B",
-        label: "Bonne Protection"
+        label: "Rookie Vendeur"
     },
-    industry: {
-        name: "Financial Services",
-        averages: [70, 85, 75, 70, 85, 65, 80, 75, 70, 90]
+    stats: {
+        simulations: 24,
+        salesSuccess: 18,
+        activeDays: 12,
+        listeningScore: 78
     }
 };
 
-// Threat indicators data
-const INDICATORS = [
-    { id: "endpoint", name: "Endpoint Security", score: 100, grade: "A", desc: "Niveau de sécurité des postes de travail" },
-    { id: "ip_rep", name: "IP Reputation", score: 100, grade: "A", desc: "Activités suspectes détectées sur le réseau" },
-    { id: "cubit", name: "Cubit Score", score: 100, grade: "A", desc: "Implémentation des bonnes pratiques" },
-    { id: "hacker", name: "Hacker Chatter", score: 100, grade: "A", desc: "Surveillance des discussions hackers" },
-    { id: "info_leak", name: "Information Leak", score: 100, grade: "A", desc: "Fuites d'informations confidentielles" },
-    { id: "social", name: "Social Engineering", score: 100, grade: "A", desc: "Sensibilisation au phishing" },
-    { id: "patching", name: "Patching Cadence", score: 92, grade: "A", desc: "Mises à jour des systèmes" },
-    { id: "dns", name: "DNS Health", score: 90, grade: "A", desc: "Configuration DNS sécurisée" },
-    { id: "app_sec", name: "Application Security", score: 79, grade: "C", desc: "Vulnérabilités applicatives" },
-    { id: "network", name: "Network Security", score: 49, grade: "F", desc: "Paramètres réseau non sécurisés" }
-];
+// SCREENE indicators - 7 branches
+const SCREENE_LABELS = ["Security", "Comfort", "Relational", "Ego", "Economy", "Novelty", "Ecology"];
 
-// Vulnerabilities data
-const VULNERABILITIES = {
-    openPorts: 1,
-    siteVulnerabilities: 19,
-    malwareDiscovered: 0,
-    leakedInformation: 0
-};
+// Scores at Onboarding (initial evaluation)
+const SCORES_ONBOARDING = [45, 52, 38, 60, 55, 42, 48];
 
-// Narrative texts with proper French accents
+// Scores after 1 month (improved, except 2 branches that stagnate)
+const SCORES_AFTER_1_MONTH = [72, 68, 75, 62, 78, 70, 50];
+
+// Narrative texts for BilanMetagora
 const NARRATIVE = [
     {
-        text: "Bonjour <span class='highlight'>Bertrand</span>, en tant que responsable de la sécurité chez <span class='highlight'>FILHET-ALLARD SA</span>, il nous semble pertinent de vous partager le résultat de notre audit flash. Votre score global est de <span class='highlight'>82/100</span>, grade <span class='highlight'>B</span>.",
-        speechText: "Bonjour Bertrand, en tant que responsable de la sécurité chez FILHET-ALLARD SA, il nous semble pertinent de vous partager le résultat de notre audit flash. Votre score global est de 82 sur 100, grade B.",
+        text: "Bonjour <span class='highlight'>Alexandre</span> ! Voici le bilan de votre parcours de simulation de vente. Vous avez atteint le <span class='highlight'>Rang B</span> : <span class='highlight'>Rookie Vendeur</span>. Un excellent point de départ !",
+        speechText: "Bonjour Alexandre ! Voici le bilan de votre parcours de simulation de vente. Vous avez atteint le Rang B : Rookie Vendeur. Un excellent point de départ !",
         choices: null
     },
     {
-        text: "Excellente nouvelle ! Vous avez <span class='highlight'>8 indicateurs au niveau A</span> : Endpoint Security, IP Reputation, Cubit Score, Hacker Chatter, Information Leak, Social Engineering, Patching Cadence et DNS Health.",
-        speechText: "Excellente nouvelle ! Vous avez 8 indicateurs au niveau A : Endpoint Security, IP Reputation, Cubit Score, Hacker Chatter, Information Leak, Social Engineering, Patching Cadence et DNS Health.",
+        text: "En <span class='highlight'>12 jours actifs</span>, vous avez réalisé <span class='highlight'>24 simulations</span> avec <span class='highlight'>18 ventes réussies</span>. Votre score d'écoute active est de <span class='highlight'>78/100</span>, ce qui montre une vraie capacité d'adaptation.",
+        speechText: "En 12 jours actifs, vous avez réalisé 24 simulations avec 18 ventes réussies. Votre score d'écoute active est de 78 sur 100, ce qui montre une vraie capacité d'adaptation.",
         choices: null
     },
     {
-        text: "Points d'attention : <span class='highlight'>Network Security (49/F)</span> nécessite une action urgente. <span class='highlight'>19 vulnérabilités</span> détectées sur vos sites et <span class='highlight'>1 port ouvert</span>. Aucun malware ni fuite détectés.",
-        speechText: "Points d'attention : Network Security avec un score de 49 sur 100 et un grade F nécessite une action urgente. 19 vulnérabilités détectées sur vos sites et 1 port ouvert. Aucun malware ni fuite détectés.",
-        choices: null
-    },
-    {
-        text: "Voici votre positionnement face au secteur <span class='highlight'>Financial Services</span>. Vous surpassez l'industrie sur la majorité des critères.",
-        speechText: "Voici votre positionnement face au secteur Financial Services. Vous surpassez l'industrie sur la majorité des critères.",
+        text: "Voici votre profil <span class='highlight'>Vendeur SCREENE</span>. La ligne rose représente votre évaluation à l'<span class='highlight'>Onboarding</span>, la ligne bleue votre progression après <span class='highlight'>1 mois</span>. Belle évolution sur la plupart des axes !",
+        speechText: "Voici votre profil Vendeur SCREENE. La ligne rose représente votre évaluation à l'Onboarding, la ligne bleue votre progression après 1 mois. Belle évolution sur la plupart des axes !",
         choices: null
     },
     {
         text: "Que souhaitez-vous faire maintenant ?",
         speechText: "Que souhaitez-vous faire maintenant ?",
         choices: [
-            { label: "En savoir plus sur SecurityScorecard", action: "learn", url: "https://securityscorecard.com" },
-            { label: "Discuter avec un expert", action: "expert", url: "https://calendly.com" },
-            { label: "Télécharger le rapport d'audit", action: "download", url: null }
+            { label: "Télécharger le report", action: "download", url: null },
+            { label: "Lire les 5 tips pour m'améliorer", action: "tips", url: null }
         ]
     }
 ];
 
 // API Configuration
-// NOTE: Change endpoint to your deployed cybermeteo-api URL on Coolify
 const API_CONFIG = {
     endpoint: "https://cybermeteo-api.lamidetlm.com",
     voice: "alloy",
-    cacheKey: "cybermeteo_audio_cache",
-    cacheVersion: "v5"
+    cacheKey: "bilanmetagora_audio_cache",
+    cacheVersion: "v1"
 };
 
 // Avatar configuration

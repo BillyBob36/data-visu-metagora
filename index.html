@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CyberMeteo - Security Scorecard</title>
+    <title>BilanMetagora - Bilan Simulation Vente</title>
 
     <!-- External Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -31,8 +31,8 @@
         </div>
 
         <div class="loading-logo">
-            <div class="loading-logo-icon">CM</div>
-            <span class="loading-logo-text">CyberMeteo</span>
+            <div class="loading-logo-icon">BM</div>
+            <span class="loading-logo-text">BilanMetagora</span>
         </div>
 
         <div class="loading-terminal">
@@ -83,10 +83,10 @@
         <!-- Header -->
         <header class="header-bar">
             <div class="logo">
-                <div class="logo-icon">CM</div>
-                <span class="logo-text">CyberMeteo</span>
+                <div class="logo-icon">BM</div>
+                <span class="logo-text">BilanMetagora</span>
             </div>
-            <div class="company-badge">FILHET-ALLARD SA</div>
+            <div class="company-badge">METAGORA</div>
         </header>
 
         <!-- Main layout -->
@@ -102,7 +102,7 @@
 
             <!-- Slides container (MIDDLE) -->
             <div class="slides-container">
-                <!-- Slide 0: Welcome with score -->
+                <!-- Slide 0: Welcome with rank -->
                 <div class="slide active" data-slide="0">
                     <div class="slide-content">
                         <div class="score-big fade-in">
@@ -112,95 +112,40 @@
                                 </svg>
                                 <span class="hex-letter">B</span>
                             </div>
-                            <span class="score-value">82</span>
+                            <div class="rank-info">
+                                <span class="rank-title">Rang B</span>
+                                <span class="rank-subtitle">Rookie Vendeur</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 1: All indicators -->
+                <!-- Slide 1: Stats boxes -->
                 <div class="slide" data-slide="1">
                     <div class="slide-content">
-                        <div class="indicators-mini">
-                            <div class="indicator-mini highlight-good">
-                                <div class="ind-grade grade-a">A</div>
-                                <div class="ind-name" data-i18n="indEndpoint">Endpoint</div>
-                                <div class="ind-score color-a">100</div>
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <div class="stat-value color-b">24</div>
+                                <div class="stat-label">Simulations</div>
                             </div>
-                            <div class="indicator-mini highlight-good">
-                                <div class="ind-grade grade-a">A</div>
-                                <div class="ind-name" data-i18n="indIpRep">IP Rep</div>
-                                <div class="ind-score color-a">100</div>
+                            <div class="stat-box">
+                                <div class="stat-value color-a">18</div>
+                                <div class="stat-label">Ventes réussies</div>
                             </div>
-                            <div class="indicator-mini highlight-good">
-                                <div class="ind-grade grade-a">A</div>
-                                <div class="ind-name" data-i18n="indCubit">Cubit</div>
-                                <div class="ind-score color-a">100</div>
+                            <div class="stat-box">
+                                <div class="stat-value color-b">12</div>
+                                <div class="stat-label">Jours actifs</div>
                             </div>
-                            <div class="indicator-mini highlight-good">
-                                <div class="ind-grade grade-a">A</div>
-                                <div class="ind-name" data-i18n="indHacker">Hacker</div>
-                                <div class="ind-score color-a">100</div>
-                            </div>
-                            <div class="indicator-mini highlight-good">
-                                <div class="ind-grade grade-a">A</div>
-                                <div class="ind-name" data-i18n="indInfoLeak">Info Leak</div>
-                                <div class="ind-score color-a">100</div>
-                            </div>
-                            <div class="indicator-mini highlight-good">
-                                <div class="ind-grade grade-a">A</div>
-                                <div class="ind-name" data-i18n="indSocialEng">Social Eng</div>
-                                <div class="ind-score color-a">100</div>
-                            </div>
-                            <div class="indicator-mini highlight-good">
-                                <div class="ind-grade grade-a">A</div>
-                                <div class="ind-name" data-i18n="indPatching">Patching</div>
-                                <div class="ind-score color-a">92</div>
-                            </div>
-                            <div class="indicator-mini highlight-good">
-                                <div class="ind-grade grade-a">A</div>
-                                <div class="ind-name" data-i18n="indDns">DNS</div>
-                                <div class="ind-score color-a">90</div>
-                            </div>
-                            <div class="indicator-mini">
-                                <div class="ind-grade grade-c">C</div>
-                                <div class="ind-name" data-i18n="indAppSec">App Sec</div>
-                                <div class="ind-score color-c">79</div>
-                            </div>
-                            <div class="indicator-mini highlight-bad">
-                                <div class="ind-grade grade-f">F</div>
-                                <div class="ind-name" data-i18n="indNetwork">Network</div>
-                                <div class="ind-score color-f">49</div>
+                            <div class="stat-box">
+                                <div class="stat-value color-a">78</div>
+                                <div class="stat-label">Score écoute active</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 2: Vulnerabilities -->
+                <!-- Slide 2: Radar chart -->
                 <div class="slide" data-slide="2">
-                    <div class="slide-content">
-                        <div class="vuln-row">
-                            <div class="vuln-stat">
-                                <div class="vuln-num color-b">1</div>
-                                <div class="vuln-label" data-i18n="vulnOpenPorts">Ports ouverts</div>
-                            </div>
-                            <div class="vuln-stat">
-                                <div class="vuln-num color-c">19</div>
-                                <div class="vuln-label" data-i18n="vulnSiteVulns">Vulnérabilités</div>
-                            </div>
-                            <div class="vuln-stat">
-                                <div class="vuln-num color-a">0</div>
-                                <div class="vuln-label" data-i18n="vulnMalware">Malware</div>
-                            </div>
-                            <div class="vuln-stat">
-                                <div class="vuln-num color-a">0</div>
-                                <div class="vuln-label" data-i18n="vulnLeakedInfo">Fuites info</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3: Radar chart -->
-                <div class="slide" data-slide="3">
                     <div class="slide-content">
                         <div class="chart-mini">
                             <canvas id="radarChart"></canvas>
@@ -208,8 +153,8 @@
                     </div>
                 </div>
 
-                <!-- Slide 4: Final choices -->
-                <div class="slide" data-slide="4">
+                <!-- Slide 3: Final choices -->
+                <div class="slide" data-slide="3">
                     <div class="slide-content">
                         <div class="score-big">
                             <div class="hexagon-container">
@@ -240,7 +185,6 @@
             <div class="dot" data-dot="1"></div>
             <div class="dot" data-dot="2"></div>
             <div class="dot" data-dot="3"></div>
-            <div class="dot" data-dot="4"></div>
         </div>
 
 

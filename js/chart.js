@@ -1,22 +1,7 @@
 /* ============================================
-   CYBERMETEO - CHART INITIALIZATION
-   Radar chart configuration
+   BILANMETAGORA - CHART INITIALIZATION
+   Radar chart configuration - SCREENE 7 branches
    ============================================ */
-
-function getRadarLabels() {
-    return [
-        getUIText('indEndpoint'),
-        getUIText('indIpRep'),
-        getUIText('indCubit'),
-        getUIText('indHacker'),
-        getUIText('indInfoLeak'),
-        getUIText('indSocialEng'),
-        getUIText('indPatching'),
-        getUIText('indDns'),
-        getUIText('indAppSec'),
-        getUIText('indNetwork')
-    ];
-}
 
 function initRadarChart() {
     const ctx = document.getElementById('radarChart');
@@ -26,33 +11,30 @@ function initRadarChart() {
     const existingChart = Chart.getChart(ctx);
     if (existingChart) existingChart.destroy();
 
-    // Get company scores from indicators
-    const companyScores = INDICATORS.map(ind => ind.score);
-
     new Chart(ctx, {
         type: 'radar',
         data: {
-            labels: getRadarLabels(),
+            labels: SCREENE_LABELS,
             datasets: [
                 {
-                    label: REPORT_DATA.company.name,
-                    data: companyScores,
-                    borderColor: '#FFC107',
-                    backgroundColor: 'rgba(255, 193, 7, 0.2)',
+                    label: 'Après 1 mois',
+                    data: SCORES_AFTER_1_MONTH,
+                    borderColor: '#312478',
+                    backgroundColor: 'rgba(49, 36, 120, 0.2)',
                     borderWidth: 2,
-                    pointBackgroundColor: '#FFC107',
-                    pointRadius: 2,
-                    tension: 0.3
+                    pointBackgroundColor: '#312478',
+                    pointRadius: 3,
+                    tension: 0.1
                 },
                 {
-                    label: getUIText('industryAverage') || 'Moyenne industrie',
-                    data: REPORT_DATA.industry.averages,
-                    borderColor: '#00D4FF',
-                    backgroundColor: 'rgba(0, 212, 255, 0.1)',
+                    label: 'Onboarding',
+                    data: SCORES_ONBOARDING,
+                    borderColor: '#A21463',
+                    backgroundColor: 'rgba(162, 20, 99, 0.15)',
                     borderWidth: 2,
-                    pointBackgroundColor: '#00D4FF',
-                    pointRadius: 2,
-                    tension: 0.3,
+                    pointBackgroundColor: '#A21463',
+                    pointRadius: 3,
+                    tension: 0.1,
                     borderDash: [5, 5]
                 }
             ]
@@ -61,16 +43,27 @@ function initRadarChart() {
             responsive: true,
             maintainAspectRatio: true,
             plugins: {
+                title: {
+                    display: true,
+                    text: 'Vendeur SCREENE',
+                    color: '#A21463',
+                    font: {
+                        family: "'JetBrains Mono', monospace",
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    padding: { bottom: 10 }
+                },
                 legend: {
                     position: 'bottom',
                     labels: {
                         color: '#A0A0A0',
                         font: {
                             family: "'JetBrains Mono', monospace",
-                            size: 9
+                            size: 10
                         },
-                        boxWidth: 10,
-                        padding: 10
+                        boxWidth: 12,
+                        padding: 15
                     }
                 },
                 tooltip: {
@@ -83,7 +76,7 @@ function initRadarChart() {
                         family: "'Inter', sans-serif",
                         size: 11
                     },
-                    borderColor: '#E87B35',
+                    borderColor: '#A21463',
                     borderWidth: 1,
                     padding: 10
                 }
@@ -96,13 +89,13 @@ function initRadarChart() {
                         stepSize: 25,
                         color: '#666666',
                         backdropColor: 'transparent',
-                        font: { size: 7 }
+                        font: { size: 8 }
                     },
                     pointLabels: {
                         color: '#A0A0A0',
                         font: {
                             family: "'JetBrains Mono', monospace",
-                            size: 8
+                            size: 10
                         }
                     },
                     grid: {

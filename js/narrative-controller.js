@@ -165,21 +165,21 @@ class NarrativeController {
 
     handleChoice(choice) {
         switch (choice.action) {
-            case 'learn':
-                if (choice.url) window.open(choice.url, '_blank');
-                break;
-            case 'expert':
-                if (choice.url) window.open(choice.url, '_blank');
-                break;
             case 'download':
                 this.downloadReport();
+                break;
+            case 'tips':
+                this.showTips();
                 break;
         }
     }
 
     downloadReport() {
-        // Placeholder for report download
-        alert('Téléchargement du rapport d\'audit...');
+        alert('Téléchargement du rapport en cours...');
+    }
+
+    showTips() {
+        alert('5 Tips pour améliorer vos performances :\n\n1. Écoutez activement avant de proposer\n2. Identifiez les motivations SCREENE du client\n3. Reformulez pour valider la compréhension\n4. Adaptez votre argumentaire au profil\n5. Concluez avec une question ouverte');
     }
 
     // ============================================
@@ -240,10 +240,10 @@ class NarrativeController {
         this.hideClickHint();
         this.hideChoices();
 
-        // Handle avatar size for radar chart slide
+        // Handle avatar size for radar chart slide (now slide 2)
         const avatarZone = document.querySelector('.avatar-zone');
         if (avatarZone) {
-            if (this.currentSlide === 3) {
+            if (this.currentSlide === 2) {
                 avatarZone.classList.add('minimized');
                 setTimeout(() => initRadarChart(), 100);
             } else {
