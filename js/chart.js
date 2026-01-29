@@ -19,23 +19,29 @@ function initRadarChart() {
                 {
                     label: 'Après 1 mois',
                     data: SCORES_AFTER_1_MONTH,
-                    borderColor: '#312478',
-                    backgroundColor: 'rgba(49, 36, 120, 0.2)',
-                    borderWidth: 2,
-                    pointBackgroundColor: '#312478',
-                    pointRadius: 3,
+                    borderColor: '#6B5FFF',
+                    backgroundColor: 'rgba(107, 95, 255, 0.25)',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#6B5FFF',
+                    pointBorderColor: '#FFFFFF',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
                     tension: 0.1
                 },
                 {
                     label: 'Onboarding',
                     data: SCORES_ONBOARDING,
-                    borderColor: '#A21463',
-                    backgroundColor: 'rgba(162, 20, 99, 0.15)',
-                    borderWidth: 2,
-                    pointBackgroundColor: '#A21463',
-                    pointRadius: 3,
+                    borderColor: '#FF1493',
+                    backgroundColor: 'rgba(255, 20, 147, 0.2)',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#FF1493',
+                    pointBorderColor: '#FFFFFF',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
                     tension: 0.1,
-                    borderDash: [5, 5]
+                    borderDash: [8, 4]
                 }
             ]
         },
@@ -92,11 +98,13 @@ function initRadarChart() {
                         font: { size: 8 }
                     },
                     pointLabels: {
-                        color: '#A0A0A0',
+                        color: '#FFFFFF',
                         font: {
                             family: "'JetBrains Mono', monospace",
-                            size: 10
-                        }
+                            size: 12,
+                            weight: 'bold'
+                        },
+                        padding: 15
                     },
                     grid: {
                         color: 'rgba(255, 255, 255, 0.1)'
