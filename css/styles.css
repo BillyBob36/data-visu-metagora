@@ -1235,15 +1235,19 @@ html, body {
         margin-top: 15px;
     }
 
-    /* Mobile: avatar stays centered on radar slide */
-    .avatar-zone.minimized {
+    /* Mobile: avatar size/position must never change */
+    .avatar-zone.minimized,
+    .avatar-zone.reduced {
         transform: none;
         justify-content: center;
+        padding-right: 0;
     }
 
-    .avatar-zone.minimized .avatar-container {
+    .avatar-zone.minimized .avatar-container,
+    .avatar-zone.reduced .avatar-container {
         width: 220px;
         height: 220px;
+        border-width: 3px;
     }
 
     .vuln-row {
