@@ -41,6 +41,8 @@ const SUPPORTED_LANGUAGES = [
 const VOICES_BY_LANGUAGE = {
     // French - Native French voices
     fr: [
+        // Lucie - Native French voice (Elevenlabs Voice Library)
+        { id: 'YxrwjAKoUKULGd0g8K9Y', name: 'Lucie', gender: 'female', description: 'Française native, claire', model: 'eleven_multilingual_v2' },
         // eleven_v3 voices (top quality)
         { id: '9BWtsMINqrJLrRacOk9x', name: 'Aria [v3]', gender: 'female', description: 'Expressive, naturelle', model: 'eleven_v3' },
         { id: 'SAz9YHcvj6GT2YYXdXww', name: 'River [v3]', gender: 'female', description: 'Fluide, calme', model: 'eleven_v3' },
