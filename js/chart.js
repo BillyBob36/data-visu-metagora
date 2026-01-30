@@ -101,10 +101,10 @@ function initRadarChart() {
                         color: '#FFFFFF',
                         font: {
                             family: "'JetBrains Mono', monospace",
-                            size: 12,
+                            size: window.innerWidth <= 600 ? 9 : 12,
                             weight: 'bold'
                         },
-                        padding: 15
+                        padding: window.innerWidth <= 600 ? 10 : 15
                     },
                     grid: {
                         color: 'rgba(255, 255, 255, 0.1)'

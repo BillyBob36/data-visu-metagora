@@ -1247,7 +1247,7 @@ html, body {
         margin-top: 15px;
     }
 
-    /* Mobile: avatar reduced (no stats slide) and minimized on radar slide */
+    /* Mobile: avatar stays normal size except on radar slide */
     .avatar-zone.reduced {
         transform: none;
         justify-content: center;
@@ -1258,6 +1258,7 @@ html, body {
         height: 220px;
     }
     
+    /* Mobile: avatar minimized only on radar slide (slide 2) */
     .avatar-zone.minimized {
         transform: none;
         justify-content: center;
@@ -1266,6 +1267,7 @@ html, body {
     .avatar-zone.minimized .avatar-container {
         width: 110px;
         height: 110px;
+        border-width: 2px;
     }
 
     .vuln-row {
