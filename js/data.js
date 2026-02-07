@@ -36,28 +36,28 @@ const DATA_INDIVIDUEL = {
         cards: [
             {
                 phase: "Présentation",
-                simNumber: 22,
+                simNumber: 14,
                 front: {
-                    context: "Le client cherchait une solution pour équiper ses 15 commerciaux terrain.",
-                    yourResponse: "Notre logiciel a toutes les fonctionnalités dont vous avez besoin, je vais vous montrer.",
-                    diagnostic: "Manque d'écoute active"
+                    context: "Le client cherchait un cadeau pour sa compagne.",
+                    yourResponse: "C'est pour offrir ? Prenez de l'or, ça fait toujours plaisir.",
+                    diagnostic: "Réponse directive et réductrice qui ignore les goûts du destinataire"
                 },
                 back: {
-                    idealResponse: "Je comprends que vous équipez 15 commerciaux terrain. Quels sont les principaux défis qu'ils rencontrent au quotidien ? Le suivi client, la prise de commande ?",
-                    justification: "Cela démontre l'écoute et cible les vrais besoins avant de proposer."
+                    idealResponse: "C'est pour offrir ? Pouvez-vous me parler un peu de la personne ? Ses goûts, ce qu'elle porte habituellement ?",
+                    justification: "Montre de l'empathie et permet de faire une recommandation pertinente."
                 }
             },
             {
                 phase: "Objections",
-                simNumber: 19,
+                simNumber: 9,
                 front: {
-                    context: "Le client dit « Je dois en parler à mon directeur avant de me décider. »",
-                    yourResponse: "D'accord, je vous rappelle la semaine prochaine pour avoir sa réponse.",
-                    diagnostic: "Objection non explorée"
+                    context: "Le client hésite devant un bracelet en série limitée.",
+                    yourResponse: "Si vous ne le prenez pas maintenant, il risque de ne plus être disponible demain.",
+                    diagnostic: "Pression artificielle qui génère de la méfiance"
                 },
                 back: {
-                    idealResponse: "Bien sûr, c'est une décision importante. Qu'est-ce qui pourrait le convaincre selon vous ? Y a-t-il un point précis sur lequel il aurait des réserves ?",
-                    justification: "Cela permet d'identifier les vraies objections et de préparer des arguments ciblés."
+                    idealResponse: "Cette pièce est effectivement en série limitée. Si vous le souhaitez, je peux la mettre de côté 48h le temps que vous décidiez sereinement.",
+                    justification: "Informe sans presser, et offre une solution concrète qui rassure."
                 }
             }
         ]
