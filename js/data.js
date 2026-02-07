@@ -121,8 +121,8 @@ const DATA_EQUIPE = {
     },
     rank: { grade: "B", label: "Team Dynamique" },
     stats: {
-        simulations: 24,
-        salesSuccess: 18,
+        simulations: 66,
+        salesSuccess: 54,
         activeDays: 12,
         listeningScore: 78
     },
@@ -140,8 +140,8 @@ const NARRATIVE_EQUIPE = [
     },
     {
         slideType: "stats",
-        text: "En <span class='highlight'>12 jours actifs</span>, votre équipe a réalisé <span class='highlight'>24 simulations</span> avec <span class='highlight'>18 ventes réussies</span>. Le score d'écoute active est de <span class='highlight'>78/100</span>, ce qui montre une vraie capacité d'adaptation de votre équipe.",
-        speechText: "En 12 jours actifs, votre équipe a réalisé 24 simulations avec 18 ventes réussies. Le score d'écoute active est de 78 sur 100, ce qui montre une vraie capacité d'adaptation de votre équipe.",
+        text: "En <span class='highlight'>12 jours actifs</span>, votre équipe a réalisé <span class='highlight'>66 simulations</span> avec <span class='highlight'>54 ventes réussies</span>. Le score d'écoute active est de <span class='highlight'>78/100</span>, ce qui montre une vraie capacité d'adaptation de votre équipe.",
+        speechText: "En 12 jours actifs, votre équipe a réalisé 66 simulations avec 54 ventes réussies. Le score d'écoute active est de 78 sur 100, ce qui montre une vraie capacité d'adaptation de votre équipe.",
         choices: null
     },
     {
