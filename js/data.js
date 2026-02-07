@@ -96,7 +96,7 @@ const NARRATIVE_INDIVIDUEL = [
     {
         slideType: "radar",
         text: "Voici votre profil <span class='highlight'>Vendeur SCREENE</span>. La ligne rose représente votre évaluation à l'<span class='highlight'>Onboarding</span>, la ligne bleue votre progression après <span class='highlight'>1 mois</span>. Belle évolution sur la plupart des axes !",
-        speechText: "Voici votre profil Vendeur Scriiine. La ligne rose représente votre évaluation à l'Onboarding, la ligne bleue votre progression après 1 mois. Belle évolution sur la plupart des axes !",
+        speechText: "Voici votre profil Vendeur SCREEN. La ligne rose représente votre évaluation à l'Onboarding, la ligne bleue votre progression après 1 mois. Belle évolution sur la plupart des axes !",
         choices: null
     },
     {
@@ -147,7 +147,7 @@ const NARRATIVE_EQUIPE = [
     {
         slideType: "radar",
         text: "Voici le profil <span class='highlight'>SCREENE</span> de votre équipe. La ligne rose représente leur niveau en début de mois lors de l'<span class='highlight'>Onboarding RMS</span>. La ligne bleue montre leur progression après <span class='highlight'>1 mois</span>. Belle évolution sur la plupart des axes !",
-        speechText: "Voici le profil Scriiine de votre équipe. La ligne rose représente leur niveau en début de mois lors de l'Onboarding R.M.S. La ligne bleue montre leur progression après 1 mois. Belle évolution sur la plupart des axes !",
+        speechText: "Voici le profil SCREEN de votre équipe. La ligne rose représente leur niveau en début de mois lors de l'Onboarding R-M-S. La ligne bleue montre leur progression après 1 mois. Belle évolution sur la plupart des axes !",
         choices: null
     },
     {
