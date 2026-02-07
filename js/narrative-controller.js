@@ -481,6 +481,16 @@ class NarrativeController {
         // Update rank slide
         const rankLabel = document.querySelector('.rank-subtitle');
         if (rankLabel) rankLabel.textContent = data.rank.label;
+
+        // Update stats slide from scenario data
+        const statSim = document.getElementById('statSimulations');
+        const statSales = document.getElementById('statSalesSuccess');
+        const statDays = document.getElementById('statActiveDays');
+        const statScore = document.getElementById('statListeningScore');
+        if (statSim) statSim.textContent = data.stats.simulations;
+        if (statSales) statSales.textContent = data.stats.salesSuccess;
+        if (statDays) statDays.textContent = data.stats.activeDays;
+        if (statScore) statScore.textContent = data.stats.listeningScore;
         
         // Update resilience slide if present
         if (data.resilience) {
