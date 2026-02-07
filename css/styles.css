@@ -564,186 +564,155 @@ html, body {
 }
 
 /* ============================================
-   RESILIENCE SLIDE
+   RESILIENCE SLIDE - Compact SVG Ring
    ============================================ */
-.resilience-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 18px 16px;
-    width: 100%;
-    max-width: 380px;
+.resilience-compact {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+    width: 100%;
+    max-width: 340px;
 }
 
-.resilience-header {
+.res-ring-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 16px;
 }
 
-.resilience-emoji {
-    font-size: 28px;
+.res-ring-wrapper {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
 }
 
-.resilience-title-block {
+.res-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.res-ring-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.06);
+    stroke-width: 8;
+}
+
+.res-ring-fill {
+    fill: none;
+    stroke: url(#resGradient);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 326.73;
+    stroke-dashoffset: 326.73;
+    transition: stroke-dashoffset 1.2s ease;
+    filter: drop-shadow(0 0 6px rgba(255, 20, 147, 0.5));
+}
+
+.res-ring-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.resilience-title {
+.res-ring-value {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--primary-pink);
-}
-
-.resilience-subtitle {
-    font-size: 11px;
-    color: var(--text-secondary);
-    font-family: 'JetBrains Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.resilience-score-row {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-}
-
-.resilience-score-big {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 48px;
+    font-size: 28px;
     font-weight: 700;
     color: var(--grade-b);
-    text-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
+    line-height: 1;
 }
 
-.resilience-score-meta {
-    display: flex;
-    flex-direction: column;
-}
-
-.resilience-score-label {
+.res-ring-unit {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 16px;
+    font-size: 10px;
     color: var(--text-secondary);
 }
 
-.resilience-level {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--primary-pink);
-    font-weight: 600;
-}
-
-.resilience-stats-row {
-    display: flex;
-    gap: 12px;
-}
-
-.resilience-stat {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 10px;
-    text-align: center;
-}
-
-.resilience-stat-value {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--grade-a);
-    display: block;
-}
-
-.resilience-stat-label {
-    font-size: 9px;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-family: 'JetBrains Mono', monospace;
-}
-
-.resilience-progress {
+.res-meta {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.resilience-progress-labels {
-    display: flex;
-    justify-content: space-between;
+.res-meta-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-pink);
+}
+
+.res-meta-level {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     color: var(--text-secondary);
 }
 
-.resilience-progress-bar {
-    height: 8px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
+.res-mini-stats {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
 }
 
-.resilience-progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--primary-pink), var(--primary-pink-light));
-    border-radius: 4px;
-    transition: width 1s ease;
-    position: relative;
+.res-mini-stat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
 }
 
-.resilience-progress-fill::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    animation: shine 2s ease-in-out infinite;
+.res-mini-stat strong {
+    font-size: 14px;
 }
 
-@keyframes shine {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+.res-sparkline-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }
 
-.resilience-sparkline {
+.res-spark {
     display: flex;
     align-items: flex-end;
-    gap: 3px;
-    height: 32px;
+    gap: 2px;
+    height: 28px;
 }
 
 .sparkline-bar {
     flex: 1;
     background: linear-gradient(180deg, var(--primary-pink), var(--accent-blue));
-    border-radius: 3px 3px 0 0;
+    border-radius: 2px 2px 0 0;
     transition: height 0.6s ease;
     min-width: 0;
 }
 
-.resilience-analysis {
-    font-size: 11px;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    padding: 8px 10px;
-    background: rgba(255, 20, 147, 0.06);
-    border-left: 2px solid var(--primary-pink);
-    border-radius: 0 6px 6px 0;
+.res-spark-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
 }
 
-.resilience-analysis strong {
-    color: var(--primary-pink);
+@media (max-width: 600px) {
+    .resilience-compact {
+        max-width: 300px;
+    }
+    .res-ring-wrapper {
+        width: 90px;
+        height: 90px;
+    }
+    .res-ring-value {
+        font-size: 22px;
+    }
+    .res-meta-title {
+        font-size: 14px;
+    }
 }
 
 /* ============================================
@@ -789,6 +758,15 @@ html, body {
     font-family: 'JetBrains Mono', monospace;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+/* Emotional content panels (swap between scores and card) */
+.emo-panel {
+    transition: opacity 0.4s ease;
+}
+
+.emo-panel.hidden {
+    display: none;
 }
 
 .emotional-scores {
@@ -843,17 +821,10 @@ html, body {
     text-align: right;
 }
 
-/* Flip Cards */
-.flip-cards-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
+/* Flip Card */
 .flip-card {
     perspective: 1000px;
-    height: 110px;
-    cursor: pointer;
+    height: 130px;
 }
 
 .flip-card-inner {
@@ -941,29 +912,18 @@ html, body {
 .emotional-actions {
     text-align: center;
     padding-top: 4px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
 }
 
-.emotional-more-btn {
+.emotional-actions .choice-btn {
     font-size: 11px !important;
-    padding: 8px 16px !important;
+    padding: 8px 14px !important;
 }
 
-/* Emotional slide mobile */
+/* Emotional + Resilience mobile */
 @media (max-width: 600px) {
-    .resilience-card {
-        padding: 14px 12px;
-        gap: 10px;
-        max-width: 320px;
-    }
-    
-    .resilience-score-big {
-        font-size: 38px;
-    }
-    
-    .resilience-stat-value {
-        font-size: 18px;
-    }
-    
     .emotional-card {
         padding: 12px 10px;
         gap: 8px;
@@ -975,7 +935,7 @@ html, body {
     }
     
     .flip-card {
-        height: 95px;
+        height: 115px;
     }
     
     .flip-card-front,

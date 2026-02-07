@@ -88,8 +88,8 @@ const NARRATIVE_INDIVIDUEL = [
     },
     {
         slideType: "emotional",
-        text: "Passons à votre <span class='highlight'>Intelligence Émotionnelle</span>. En phase Présentation, votre score est de <span class='highlight'>82%</span>. Lors de la simulation n°22, vous avez dit : <span class='highlight'>« Notre logiciel a toutes les fonctionnalités dont vous avez besoin »</span> — sans explorer les vrais besoins du client.",
-        speechText: "Passons à votre Intelligence Émotionnelle. En phase Présentation, votre score est de 82%. Lors de la simulation numéro 22, vous avez dit : Notre logiciel a toutes les fonctionnalités dont vous avez besoin, sans explorer les vrais besoins du client.",
+        text: "Passons à votre <span class='highlight'>Intelligence Émotionnelle</span>. En phase Présentation, votre score est de <span class='highlight'>82%</span>, et en Objections <span class='highlight'>78%</span>. C'est encourageant ! Pour aller plus loin, voyons ce que vous pouvez améliorer.",
+        speechText: "Passons à votre Intelligence Émotionnelle. En phase Présentation, votre score est de 82%, et en Objections 78%. C'est encourageant ! Pour aller plus loin, voyons ce que vous pouvez améliorer.",
         choices: null,
         subSteps: true
     },

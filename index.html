@@ -156,43 +156,39 @@
                 <!-- Slide 2: Resilience (individuel only) -->
                 <div class="slide" data-slide="2" data-slide-type="resilience">
                     <div class="slide-content">
-                        <div class="resilience-card">
-                            <div class="resilience-header">
-                                <span class="resilience-emoji">💪</span>
-                                <div class="resilience-title-block">
-                                    <span class="resilience-title">Résilience</span>
-                                    <span class="resilience-subtitle">Persévérance & Progression</span>
+                        <div class="resilience-compact">
+                            <div class="res-ring-row">
+                                <div class="res-ring-wrapper">
+                                    <svg class="res-ring" viewBox="0 0 120 120">
+                                        <defs>
+                                            <linearGradient id="resGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" stop-color="#FF1493" />
+                                                <stop offset="100%" stop-color="#FF69B4" />
+                                            </linearGradient>
+                                        </defs>
+                                        <circle class="res-ring-bg" cx="60" cy="60" r="52" />
+                                        <circle class="res-ring-fill" id="resRingFill" cx="60" cy="60" r="52" />
+                                    </svg>
+                                    <div class="res-ring-label">
+                                        <span class="res-ring-value" id="resRingValue">78</span>
+                                        <span class="res-ring-unit">/100</span>
+                                    </div>
+                                </div>
+                                <div class="res-meta">
+                                    <span class="res-meta-title">Résilience</span>
+                                    <span class="res-meta-level" id="resLevel">Level 4/5</span>
+                                    <div class="res-mini-stats">
+                                        <span class="res-mini-stat"><strong id="resSim">24</strong> sims</span>
+                                        <span class="res-mini-stat"><strong id="resProg" class="color-a">+12</strong> pts/mois</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="resilience-score-row">
-                                <div class="resilience-score-big" id="resilienceScore">78</div>
-                                <div class="resilience-score-meta">
-                                    <span class="resilience-score-label">/100</span>
-                                    <span class="resilience-level" id="resilienceLevel">Level 4/5</span>
+                            <div class="res-sparkline-row">
+                                <div class="res-spark" id="resSparkline"></div>
+                                <div class="res-spark-labels">
+                                    <span id="resSparkStart">66</span>
+                                    <span id="resSparkEnd">78</span>
                                 </div>
-                            </div>
-                            <div class="resilience-stats-row">
-                                <div class="resilience-stat">
-                                    <span class="resilience-stat-value" id="resSimulations">24</span>
-                                    <span class="resilience-stat-label">Simulations</span>
-                                </div>
-                                <div class="resilience-stat">
-                                    <span class="resilience-stat-value" id="resProgression">+12</span>
-                                    <span class="resilience-stat-label">Points ce mois</span>
-                                </div>
-                            </div>
-                            <div class="resilience-progress">
-                                <div class="resilience-progress-labels">
-                                    <span id="resStartScore">66</span>
-                                    <span id="resEndScore">78</span>
-                                </div>
-                                <div class="resilience-progress-bar">
-                                    <div class="resilience-progress-fill" id="resProgressFill"></div>
-                                </div>
-                            </div>
-                            <div class="resilience-sparkline" id="resSparkline"></div>
-                            <div class="resilience-analysis">
-                                ✨ <strong>Excellente capacité de rebond !</strong> Après une baisse en simulation #15-18, vous avez progressé de +6 pts/simulation.
                             </div>
                         </div>
                     </div>
@@ -209,23 +205,27 @@
                                     <span class="emotional-subtitle">Empathie & Objections</span>
                                 </div>
                             </div>
-                            <div class="emotional-scores">
-                                <div class="emotional-score-item">
-                                    <span class="emotional-phase-label">Présentation</span>
-                                    <div class="emotional-bar-container">
-                                        <div class="emotional-bar-fill presentation-bar" id="emoPresentationBar"></div>
+                            <!-- Panel 1: Scores overview -->
+                            <div class="emo-panel" id="emoPanelScores">
+                                <div class="emotional-scores">
+                                    <div class="emotional-score-item">
+                                        <span class="emotional-phase-label">Présentation</span>
+                                        <div class="emotional-bar-container">
+                                            <div class="emotional-bar-fill presentation-bar" id="emoPresentationBar"></div>
+                                        </div>
+                                        <span class="emotional-score-value" id="emoPresentationScore">82%</span>
                                     </div>
-                                    <span class="emotional-score-value" id="emoPresentationScore">82%</span>
-                                </div>
-                                <div class="emotional-score-item">
-                                    <span class="emotional-phase-label">Objections</span>
-                                    <div class="emotional-bar-container">
-                                        <div class="emotional-bar-fill objections-bar" id="emoObjectionsBar"></div>
+                                    <div class="emotional-score-item">
+                                        <span class="emotional-phase-label">Objections</span>
+                                        <div class="emotional-bar-container">
+                                            <div class="emotional-bar-fill objections-bar" id="emoObjectionsBar"></div>
+                                        </div>
+                                        <span class="emotional-score-value" id="emoObjectionsScore">78%</span>
                                     </div>
-                                    <span class="emotional-score-value" id="emoObjectionsScore">78%</span>
                                 </div>
                             </div>
-                            <div class="flip-cards-container" id="flipCardsContainer">
+                            <!-- Panel 2: Card (front then flip) -->
+                            <div class="emo-panel hidden" id="emoPanelCard">
                                 <div class="flip-card" id="flipCard0" data-card-index="0">
                                     <div class="flip-card-inner">
                                         <div class="flip-card-front">
@@ -241,24 +241,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flip-card" id="flipCard1" data-card-index="1">
-                                    <div class="flip-card-inner">
-                                        <div class="flip-card-front">
-                                            <div class="flip-card-badge">❌ OBJECTIONS #19</div>
-                                            <div class="flip-card-context" id="flipContext1"></div>
-                                            <div class="flip-card-response" id="flipResponse1"></div>
-                                            <div class="flip-card-diagnostic" id="flipDiagnostic1"></div>
-                                        </div>
-                                        <div class="flip-card-back">
-                                            <div class="flip-card-badge ideal">✅ RÉPONSE IDÉALE</div>
-                                            <div class="flip-card-ideal" id="flipIdeal1"></div>
-                                            <div class="flip-card-justification" id="flipJustification1"></div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="emotional-actions" id="emotionalActions" style="display:none;">
-                                <button class="choice-btn emotional-more-btn" id="emotionalMoreBtn">🔄 Mes autres erreurs</button>
+                            <!-- Panel 3: Actions after flip -->
+                            <div class="emotional-actions hidden" id="emotionalActions">
+                                <button class="choice-btn" id="emotionalMoreBtn">Plus d'exemples d'erreurs</button>
+                                <button class="choice-btn" id="emotionalContinueBtn">Continuer le bilan</button>
                             </div>
                         </div>
                     </div>
