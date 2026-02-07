@@ -141,7 +141,7 @@ class AudioCacheManager {
                 text,
                 voiceId,
                 modelId,
-                outputFormat: 'mp3_44100_128'
+                outputFormat: 'mp3_44100_192'
             })
         });
 

@@ -96,7 +96,7 @@ const NARRATIVE_INDIVIDUEL = [
     {
         slideType: "radar",
         text: "Voici votre profil <span class='highlight'>Vendeur SCREENE</span>. La ligne rose représente votre évaluation à l'<span class='highlight'>Onboarding</span>, la ligne bleue votre progression après <span class='highlight'>1 mois</span>. Belle évolution sur la plupart des axes !",
-        speechText: "Voici votre profil Vendeur SCREENE. La ligne rose représente votre évaluation à l'Onboarding, la ligne bleue votre progression après 1 mois. Belle évolution sur la plupart des axes !",
+        speechText: "Voici votre profil Vendeur Scriiine. La ligne rose représente votre évaluation à l'Onboarding, la ligne bleue votre progression après 1 mois. Belle évolution sur la plupart des axes !",
         choices: null
     },
     {
@@ -104,7 +104,7 @@ const NARRATIVE_INDIVIDUEL = [
         text: "Que souhaitez-vous faire maintenant ?",
         speechText: "Que souhaitez-vous faire maintenant ?",
         choices: [
-            { label: "Télécharger le report", action: "download", url: null },
+            { label: "Télécharger le rapport", action: "download", url: null },
             { label: "Lire les 5 tips pour m'améliorer", action: "tips", url: null }
         ]
     }
@@ -147,7 +147,7 @@ const NARRATIVE_EQUIPE = [
     {
         slideType: "radar",
         text: "Voici le profil <span class='highlight'>SCREENE</span> de votre équipe. La ligne rose représente leur niveau en début de mois lors de l'<span class='highlight'>Onboarding RMS</span>. La ligne bleue montre leur progression après <span class='highlight'>1 mois</span>. Belle évolution sur la plupart des axes !",
-        speechText: "Voici le profil SCREENE de votre équipe. La ligne rose représente leur niveau en début de mois lors de l'Onboarding RMS. La ligne bleue montre leur progression après 1 mois. Belle évolution sur la plupart des axes !",
+        speechText: "Voici le profil Scriiine de votre équipe. La ligne rose représente leur niveau en début de mois lors de l'Onboarding R.M.S. La ligne bleue montre leur progression après 1 mois. Belle évolution sur la plupart des axes !",
         choices: null
     },
     {
@@ -155,8 +155,8 @@ const NARRATIVE_EQUIPE = [
         text: "Que souhaitez-vous faire maintenant ?",
         speechText: "Que souhaitez-vous faire maintenant ?",
         choices: [
-            { label: "Télécharger le report", action: "download", url: null },
-            { label: "Lire les 5 tips pour m'améliorer", action: "tips", url: null }
+            { label: "Télécharger le rapport", action: "download", url: null },
+            { label: "Lire les 3 tips pour mon équipe", action: "tips", url: null }
         ]
     }
 ];
@@ -186,7 +186,7 @@ const API_CONFIG = {
     endpoint: "https://cybermeteo-api.lamidetlm.com",
     voice: "alloy",
     cacheKey: "bilanmetagora_audio_cache",
-    cacheVersion: "v1"
+    cacheVersion: "v2"
 };
 
 // Avatar configuration

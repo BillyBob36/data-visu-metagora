@@ -253,7 +253,7 @@ class NarrativeController {
                     text: speechText,
                     voiceId: I18N_STATE.currentVoice,
                     modelId,
-                    outputFormat: 'mp3_44100_128'
+                    outputFormat: 'mp3_44100_192'
                 })
             });
 
@@ -375,7 +375,49 @@ class NarrativeController {
     }
 
     downloadReport() {
-        alert('Téléchargement du rapport en cours...');
+        // Generate and download a simple text report
+        const data = getScenarioData();
+        const narrative = this.getNarrative();
+        const name = data.report.trainee.name;
+        const role = data.report.trainee.role;
+        const date = data.report.date;
+
+        let report = `BILAN METAGORA - ${data.report.generatedBy}\n`;
+        report += `${'='.repeat(40)}\n\n`;
+        report += `Nom : ${name}\n`;
+        report += `Rôle : ${role}\n`;
+        report += `Date : ${date}\n`;
+        report += `Rang : ${data.rank.grade} - ${data.rank.label}\n\n`;
+        report += `STATISTIQUES\n${'-'.repeat(20)}\n`;
+        report += `Simulations : ${data.stats.simulations}\n`;
+        report += `Ventes réussies : ${data.stats.salesSuccess}\n`;
+        report += `Jours actifs : ${data.stats.activeDays}\n`;
+        report += `Score écoute active : ${data.stats.listeningScore}/100\n`;
+
+        if (data.resilience) {
+            report += `\nRÉSILIENCE\n${'-'.repeat(20)}\n`;
+            report += `Score : ${data.resilience.score}/100 (Level ${data.resilience.level}/${data.resilience.maxLevel})\n`;
+            report += `Progression : +${data.resilience.progressionMonth} pts/mois\n`;
+        }
+
+        if (data.emotionalIntelligence) {
+            report += `\nINTELLIGENCE ÉMOTIONNELLE\n${'-'.repeat(20)}\n`;
+            report += `Présentation : ${data.emotionalIntelligence.presentationScore}%\n`;
+            report += `Objections : ${data.emotionalIntelligence.objectionsScore}%\n`;
+        }
+
+        report += `\n${'='.repeat(40)}\n`;
+        report += `Généré par ${data.report.generatedBy} le ${date}\n`;
+
+        const blob = new Blob([report], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Bilan_Metagora_${name.replace(/\s/g, '_')}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
     }
 
     showTips() {
