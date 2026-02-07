@@ -928,6 +928,10 @@ html, body {
     justify-content: center;
 }
 
+.emotional-actions.hidden {
+    display: none;
+}
+
 .emotional-actions .choice-btn {
     font-size: 11px !important;
     padding: 8px 14px !important;

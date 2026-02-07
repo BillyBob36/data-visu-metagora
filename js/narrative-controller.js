@@ -99,7 +99,8 @@ class NarrativeController {
             continueBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 this.emotionalBlocking = false;
-                this.nextSlide();
+                this.canContinue = true;
+                this.goToSlide(this.currentSlide + 1);
             });
         }
     }
@@ -523,15 +524,11 @@ class NarrativeController {
         if (avatarZone) {
             avatarZone.classList.remove('reduced', 'minimized');
             
-            if (slideType === 'stats') {
+            if (slideType === 'stats' || slideType === 'resilience' || slideType === 'emotional') {
                 avatarZone.classList.add('reduced');
-            } else if (slideType === 'resilience' || slideType === 'radar') {
+            } else if (slideType === 'radar') {
                 avatarZone.classList.add('minimized');
-                if (slideType === 'radar') {
-                    setTimeout(() => initRadarChart(), 100);
-                }
-            } else if (slideType === 'emotional') {
-                avatarZone.classList.add('reduced');
+                setTimeout(() => initRadarChart(), 100);
             }
         }
 
