@@ -185,9 +185,13 @@ class NarrativeController {
             this.emotionalSubStep = 1;
             this.showEmotionalCardFront();
         } else if (this.emotionalSubStep === 1) {
-            // Audio for card description finished → flip card
+            // Audio for card front description finished → flip card + narrate back
             this.emotionalSubStep = 2;
             this.flipEmotionalCard();
+        } else if (this.emotionalSubStep === 2) {
+            // Audio for card back finished → hide card, show buttons
+            this.emotionalSubStep = 3;
+            this.showEmotionalActions();
         }
     }
 
@@ -218,13 +222,18 @@ class NarrativeController {
         const subText = `Idéalement, vous auriez dû répondre : <span class='highlight'>« ${card.back.idealResponse} »</span>. ${card.back.justification}`;
         const subSpeech = `Idéalement, vous auriez dû répondre : ${card.back.idealResponse}. ${card.back.justification}`;
 
-        this.typeWriter(subText, () => {
-            // Show action buttons after text is typed
-            const actions = document.getElementById('emotionalActions');
-            if (actions) actions.classList.remove('hidden');
-            // Unblock — buttons handle next step
-        });
+        this.typeWriter(subText, () => {});
         this.playSubNarrativeAudio(subSpeech);
+    }
+
+    showEmotionalActions() {
+        // Hide card panel, show buttons in its place
+        const panelCard = document.getElementById('emoPanelCard');
+        const actions = document.getElementById('emotionalActions');
+        if (panelCard) panelCard.classList.add('hidden');
+        if (actions) actions.classList.remove('hidden');
+
+        this.typeWriter("Que souhaitez-vous faire ?", () => {});
     }
 
     async playSubNarrativeAudio(speechText) {
@@ -253,9 +262,9 @@ class NarrativeController {
             this.audioPlaying = true;
 
             if (this.avatar.speakWithCrossfade) {
-                await this.avatar.speakWithCrossfade(audioBlob, this.currentSlide);
+                await this.avatar.speakWithCrossfade(audioBlob, -1);
             } else {
-                await this.avatar.speakWithAudio(audioBlob, this.currentSlide);
+                await this.avatar.speakWithAudio(audioBlob, -1);
             }
 
             this.audioPlaying = false;
