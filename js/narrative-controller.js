@@ -1,7 +1,7 @@
 /* ============================================
-   CYBERMETEO - NARRATIVE CONTROLLER
-   Handles slide navigation and dialogue display
-   Adapted for smooth avatar transitions
+   BILANMETAGORA - NARRATIVE CONTROLLER
+   Handles slide navigation, dialogue display,
+   scenario switching, and emotional sub-steps
    ============================================ */
 
 class NarrativeController {
@@ -23,8 +23,15 @@ class NarrativeController {
         this.canContinue = false;
         this.userHasInteracted = false;
 
+        // Emotional intelligence sub-step state
+        this.emotionalSubStep = 0; // 0=initial, 1=card0 flipped, 2=card1 described, 3=card1 flipped, 4=show actions
+        this.emotionalBlocking = false; // blocks global click when on emotional slide
+
         // Flag to track if we're in the middle of a slide transition
         this.isTransitioning = false;
+
+        // Slide mapping: maps narrative index -> DOM slide index
+        this.slideMap = [];
 
         // Bind methods
         this.handleClick = this.handleClick.bind(this);
@@ -39,12 +46,33 @@ class NarrativeController {
         if (I18N_STATE && I18N_STATE.translatedNarrative && I18N_STATE.translatedNarrative.length > 0) {
             return I18N_STATE.translatedNarrative;
         }
-        return NARRATIVE;
+        return getScenarioNarrative();
     }
 
     // Get current slide data
     getCurrentSlide() {
         return this.getNarrative()[this.currentSlide];
+    }
+
+    // Build slide mapping based on scenario
+    buildSlideMap() {
+        const narrative = this.getNarrative();
+        this.slideMap = [];
+        const allSlides = document.querySelectorAll('.slide');
+        
+        narrative.forEach((item) => {
+            for (let i = 0; i < allSlides.length; i++) {
+                if (allSlides[i].dataset.slideType === item.slideType) {
+                    this.slideMap.push(i);
+                    break;
+                }
+            }
+        });
+    }
+
+    // Get the DOM slide index for current narrative slide
+    getDomSlideIndex() {
+        return this.slideMap[this.currentSlide] || this.currentSlide;
     }
 
     setupEventListeners() {
@@ -55,11 +83,38 @@ class NarrativeController {
         document.querySelectorAll('.dot').forEach(dot => {
             dot.addEventListener('click', this.handleDotClick);
         });
+
+        // Flip card click handlers
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                // Only handle flip if we're on the emotional slide
+                if (this.getCurrentSlide()?.slideType === 'emotional') {
+                    this.handleFlipCardClick(card);
+                }
+            });
+        });
+
+        // Emotional "more errors" button
+        const moreBtn = document.getElementById('emotionalMoreBtn');
+        if (moreBtn) {
+            moreBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                alert('Fonctionnalité à venir : accès à toutes vos erreurs et réponses idéales.');
+            });
+        }
     }
 
     handleClick(e) {
-        // Don't handle clicks on choices or dots
-        if (e.target.closest('.choice-btn') || e.target.closest('.dot')) {
+        // Don't handle clicks on choices, dots, flip cards, or emotional buttons
+        if (e.target.closest('.choice-btn') || e.target.closest('.dot') || 
+            e.target.closest('.flip-card') || e.target.closest('.emotional-more-btn')) {
+            return;
+        }
+
+        // If on emotional slide with sub-steps, handle sub-step progression
+        if (this.emotionalBlocking) {
+            this.advanceEmotionalSubStep();
             return;
         }
 
@@ -76,6 +131,118 @@ class NarrativeController {
         if (this.narrativeComplete) {
             const slideIndex = parseInt(e.target.dataset.dot);
             this.goToSlide(slideIndex);
+        }
+    }
+
+    // ============================================
+    // EMOTIONAL INTELLIGENCE SUB-STEPS
+    // ============================================
+    initEmotionalSlide() {
+        this.emotionalSubStep = 0;
+        this.emotionalBlocking = true;
+
+        // Populate card data from scenario
+        const data = getScenarioData();
+        if (!data.emotionalIntelligence) return;
+
+        const ei = data.emotionalIntelligence;
+        const cards = ei.cards;
+
+        // Set scores
+        const presBar = document.getElementById('emoPresentationBar');
+        const objBar = document.getElementById('emoObjectionsBar');
+        if (presBar) setTimeout(() => { presBar.style.width = ei.presentationScore + '%'; }, 200);
+        if (objBar) setTimeout(() => { objBar.style.width = ei.objectionsScore + '%'; }, 400);
+
+        // Populate flip cards
+        cards.forEach((card, i) => {
+            const ctx = document.getElementById(`flipContext${i}`);
+            const resp = document.getElementById(`flipResponse${i}`);
+            const diag = document.getElementById(`flipDiagnostic${i}`);
+            const ideal = document.getElementById(`flipIdeal${i}`);
+            const just = document.getElementById(`flipJustification${i}`);
+
+            if (ctx) ctx.textContent = card.front.context;
+            if (resp) resp.textContent = `« ${card.front.yourResponse} »`;
+            if (diag) diag.textContent = `→ ${card.front.diagnostic}`;
+            if (ideal) ideal.textContent = `« ${card.back.idealResponse} »`;
+            if (just) just.textContent = card.back.justification;
+        });
+
+        // Reset flip states
+        document.querySelectorAll('.flip-card').forEach(c => c.classList.remove('flipped'));
+
+        // Hide second card initially, show first
+        const card0 = document.getElementById('flipCard0');
+        const card1 = document.getElementById('flipCard1');
+        if (card0) card0.style.display = 'block';
+        if (card1) card1.style.display = 'none';
+
+        // Hide actions
+        const actions = document.getElementById('emotionalActions');
+        if (actions) actions.style.display = 'none';
+    }
+
+    handleFlipCardClick(card) {
+        const idx = parseInt(card.dataset.cardIndex);
+        
+        // Only allow flipping the current active card at the right sub-step
+        if (this.emotionalSubStep === 0 && idx === 0) {
+            // Flip first card to show ideal response
+            card.classList.add('flipped');
+            this.emotionalSubStep = 1;
+            
+            // Update narrative text
+            const data = getScenarioData();
+            const idealCard = data.emotionalIntelligence.cards[0];
+            this.typeWriter(
+                `La réponse idéale aurait été : <span class='highlight'>« ${idealCard.back.idealResponse.substring(0, 80)}... »</span> — ${idealCard.back.justification}`,
+                () => {}
+            );
+        } else if (this.emotionalSubStep === 2 && idx === 1) {
+            // Flip second card
+            card.classList.add('flipped');
+            this.emotionalSubStep = 3;
+            
+            const data = getScenarioData();
+            const idealCard = data.emotionalIntelligence.cards[1];
+            this.typeWriter(
+                `La réponse idéale : <span class='highlight'>« ${idealCard.back.idealResponse.substring(0, 80)}... »</span> — ${idealCard.back.justification}`,
+                () => {
+                    // Show the "more errors" button and allow continuing
+                    this.emotionalSubStep = 4;
+                    const actions = document.getElementById('emotionalActions');
+                    if (actions) actions.style.display = 'block';
+                    this.showEmotionalContinueHint();
+                }
+            );
+        }
+    }
+
+    advanceEmotionalSubStep() {
+        if (this.emotionalSubStep === 1) {
+            // After first card flipped, show second card and describe it
+            this.emotionalSubStep = 2;
+            const card1 = document.getElementById('flipCard1');
+            if (card1) card1.style.display = 'block';
+
+            const data = getScenarioData();
+            const card = data.emotionalIntelligence.cards[1];
+            this.typeWriter(
+                `En phase Objections, score de <span class='highlight'>${data.emotionalIntelligence.objectionsScore}%</span>. Lors de la simulation n°${card.simNumber}, le client a dit : <span class='highlight'>« ${card.front.context.substring(card.front.context.indexOf('«') + 2, card.front.context.lastIndexOf('»'))} »</span>. Vous avez répondu : <span class='highlight'>« ${card.front.yourResponse} »</span> — ${card.front.diagnostic}.`,
+                () => {}
+            );
+        } else if (this.emotionalSubStep >= 4) {
+            // Done with emotional slide, allow normal progression
+            this.emotionalBlocking = false;
+            this.showClickHint();
+        }
+    }
+
+    showEmotionalContinueHint() {
+        if (this.clickHint) {
+            this.clickHint.textContent = 'Cliquez pour continuer votre bilan...';
+            this.clickHint.classList.add('visible');
         }
     }
 
@@ -202,14 +369,76 @@ class NarrativeController {
     }
 
     updateSlideVisibility() {
+        const domIndex = this.getDomSlideIndex();
         document.querySelectorAll('.slide').forEach((slide, index) => {
             slide.classList.remove('active', 'exit');
-            if (index === this.currentSlide) {
+            if (index === domIndex) {
                 slide.classList.add('active');
-            } else if (index < this.currentSlide) {
-                slide.classList.add('exit');
             }
         });
+    }
+
+    // Configure which slides are visible based on scenario
+    configureSlideVisibility() {
+        const narrative = this.getNarrative();
+        const activeTypes = narrative.map(n => n.slideType);
+        
+        document.querySelectorAll('.slide').forEach(slide => {
+            const type = slide.dataset.slideType;
+            if (type && !activeTypes.includes(type)) {
+                slide.style.display = 'none';
+            } else {
+                slide.style.display = '';
+            }
+        });
+    }
+
+    // Update HTML content based on scenario data
+    updateSlideContent() {
+        const data = getScenarioData();
+        
+        // Update rank slide
+        const rankLabel = document.querySelector('.rank-subtitle');
+        if (rankLabel) rankLabel.textContent = data.rank.label;
+        
+        // Update resilience slide if present
+        if (data.resilience) {
+            this.initResilienceSlide(data.resilience);
+        }
+    }
+
+    initResilienceSlide(res) {
+        const scoreEl = document.getElementById('resilienceScore');
+        const levelEl = document.getElementById('resilienceLevel');
+        const simEl = document.getElementById('resSimulations');
+        const progEl = document.getElementById('resProgression');
+        const startEl = document.getElementById('resStartScore');
+        const endEl = document.getElementById('resEndScore');
+        const fillEl = document.getElementById('resProgressFill');
+        const sparkEl = document.getElementById('resSparkline');
+
+        if (scoreEl) scoreEl.textContent = res.score;
+        if (levelEl) levelEl.textContent = `Level ${res.level}/${res.maxLevel}`;
+        if (simEl) simEl.textContent = res.totalSimulations;
+        if (progEl) progEl.textContent = `+${res.progressionMonth}`;
+        if (startEl) startEl.textContent = res.startScore;
+        if (endEl) endEl.textContent = res.score;
+        if (fillEl) setTimeout(() => { fillEl.style.width = res.score + '%'; }, 300);
+
+        // Build sparkline
+        if (sparkEl && res.sparkline) {
+            sparkEl.innerHTML = '';
+            const max = Math.max(...res.sparkline);
+            res.sparkline.forEach((val, i) => {
+                const bar = document.createElement('div');
+                bar.className = 'sparkline-bar';
+                bar.style.height = '0%';
+                sparkEl.appendChild(bar);
+                setTimeout(() => {
+                    bar.style.height = (val / max * 100) + '%';
+                }, 400 + i * 150);
+            });
+        }
     }
 
     async goToSlide(slideIndex, useCrossfade = true) {
@@ -222,6 +451,7 @@ class NarrativeController {
 
         this.isTransitioning = true;
         this.audioPlaying = false;
+        this.emotionalBlocking = false;
 
         // Cancel any pending typewriter
         if (this.typewriterTimeout) {
@@ -240,36 +470,42 @@ class NarrativeController {
         this.hideClickHint();
         this.hideChoices();
 
-        // Handle avatar size changes per slide
+        // Get current slide type
+        const slideType = this.getCurrentSlide().slideType;
+
+        // Handle avatar size changes per slide type
         const avatarZone = document.querySelector('.avatar-zone');
         if (avatarZone) {
-            // Remove all size classes first
             avatarZone.classList.remove('reduced', 'minimized');
             
-            // Slide 1 (stats): reduce by 20%
-            if (this.currentSlide === 1) {
+            if (slideType === 'stats' || slideType === 'resilience' || slideType === 'emotional') {
                 avatarZone.classList.add('reduced');
-            }
-            // Slide 2 (radar): minimize and shift
-            else if (this.currentSlide === 2) {
+            } else if (slideType === 'radar') {
                 avatarZone.classList.add('minimized');
                 setTimeout(() => initRadarChart(), 100);
             }
         }
 
+        // Initialize emotional slide sub-steps
+        if (slideType === 'emotional' && this.getCurrentSlide().subSteps) {
+            this.initEmotionalSlide();
+        }
+
         this.isTransitioning = false;
 
-        // Start typing IMMEDIATELY - don't wait for avatar
+        // Start typing IMMEDIATELY
         this.typeWriter(this.getCurrentSlide().text, () => {
             if (this.getCurrentSlide().choices) {
                 this.showChoices();
                 this.narrativeComplete = true;
+            } else if (slideType === 'emotional' && this.getCurrentSlide().subSteps) {
+                // Don't show click hint, wait for card interaction
             } else {
                 this.showClickHint();
             }
         });
 
-        // Start audio with crossfade (for click transitions) or normal (for initial load)
+        // Start audio
         if (this.userHasInteracted) {
             this.playSlideAudio(useCrossfade);
         }
@@ -291,8 +527,6 @@ class NarrativeController {
 
             if (audioBlob) {
                 this.audioPlaying = true;
-                // Use crossfade for slide changes (smooth transition, no return to frame 0)
-                // Use normal speakWithAudio for initial load (waits for frame 0)
                 if (useCrossfade && this.avatar.speakWithCrossfade) {
                     await this.avatar.speakWithCrossfade(audioBlob, this.currentSlide);
                 } else {
@@ -340,6 +574,11 @@ class NarrativeController {
     // INITIALIZATION
     // ============================================
     async start() {
+        // Build slide map and configure visibility
+        this.buildSlideMap();
+        this.configureSlideVisibility();
+        this.updateSlideContent();
+
         // Start preloading all audio in background
         audioCache.preloadAll((loaded, total) => {
             console.log(`Audio preload: ${loaded}/${total}`);

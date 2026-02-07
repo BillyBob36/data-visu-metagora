@@ -105,7 +105,7 @@ class TranslationService {
         if (targetLangCode === 'fr') {
             // French is the source language, no translation needed
             return {
-                narrative: NARRATIVE,
+                narrative: getScenarioNarrative(),
                 ui: UI_TRANSLATIONS.fr
             };
         }
@@ -207,10 +207,11 @@ Return the translated JSON object only, no explanation.`;
     // Translate narrative texts
     async translateNarrative(targetLanguageName, onProgress) {
         const translatedNarrative = [];
-        const total = NARRATIVE.length;
+        const narrative = getScenarioNarrative();
+        const total = narrative.length;
 
-        for (let i = 0; i < NARRATIVE.length; i++) {
-            const slide = NARRATIVE[i];
+        for (let i = 0; i < narrative.length; i++) {
+            const slide = narrative[i];
             
             const prompt = `Translate the following cybersecurity report text from French to ${targetLanguageName}.
 Keep the same professional tone. Preserve any HTML tags like <span class='highlight'>.

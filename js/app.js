@@ -9,6 +9,7 @@ let narrativeController = null;
 let globalAudioContext = null;
 
 // DOM Elements
+let scenarioSelect = null;
 let languageSelect = null;
 let voiceSelect = null;
 let previewVoiceBtn = null;
@@ -22,6 +23,7 @@ async function initApp() {
     console.log('CyberMeteo: Initializing...');
 
     // Get DOM elements
+    scenarioSelect = document.getElementById('scenarioSelect');
     languageSelect = document.getElementById('languageSelect');
     voiceSelect = document.getElementById('voiceSelect');
     previewVoiceBtn = document.getElementById('previewVoiceBtn');
@@ -42,6 +44,7 @@ async function initApp() {
     populateVoiceSelector();
 
     // Setup event listeners
+    setupScenarioListener();
     setupI18nEventListeners();
 
     // Show language/voice selection
@@ -51,6 +54,16 @@ async function initApp() {
     }
 
     console.log('CyberMeteo: Ready for configuration');
+}
+
+// Setup scenario selector listener
+function setupScenarioListener() {
+    if (scenarioSelect) {
+        scenarioSelect.addEventListener('change', (e) => {
+            CURRENT_SCENARIO = e.target.value;
+            console.log('Scenario changed to:', CURRENT_SCENARIO);
+        });
+    }
 }
 
 // Populate language dropdown
@@ -220,6 +233,12 @@ async function startExperience() {
 
     startExperienceBtn.disabled = true;
     startExperienceBtn.textContent = 'Chargement...';
+
+    // Apply selected scenario
+    if (scenarioSelect) {
+        CURRENT_SCENARIO = scenarioSelect.value;
+    }
+    console.log('Starting with scenario:', CURRENT_SCENARIO);
 
     // Create AudioContext
     if (!globalAudioContext) {

@@ -313,12 +313,12 @@ function getUIText(key) {
     return UI_TRANSLATIONS.fr[key] || key;
 }
 
-// Get current narrative (translated or original)
+// Get current narrative (translated or original, scenario-aware)
 function getCurrentNarrative() {
     if (I18N_STATE.translatedNarrative && I18N_STATE.currentLanguage !== 'fr') {
         return I18N_STATE.translatedNarrative;
     }
-    return NARRATIVE;
+    return getScenarioNarrative();
 }
 
 // Update all elements with data-i18n attribute

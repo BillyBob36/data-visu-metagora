@@ -11,14 +11,20 @@ function initRadarChart() {
     const existingChart = Chart.getChart(ctx);
     if (existingChart) existingChart.destroy();
 
+    // Get scenario-aware data
+    const data = getScenarioData();
+    const labels = data.screeneLabels || SCREENE_LABELS;
+    const scoresAfter = data.scoresAfter1Month || SCORES_AFTER_1_MONTH;
+    const scoresOnboard = data.scoresOnboarding || SCORES_ONBOARDING;
+
     new Chart(ctx, {
         type: 'radar',
         data: {
-            labels: SCREENE_LABELS,
+            labels: labels,
             datasets: [
                 {
                     label: 'Après 1 mois',
-                    data: SCORES_AFTER_1_MONTH,
+                    data: scoresAfter,
                     borderColor: '#6B5FFF',
                     backgroundColor: 'rgba(107, 95, 255, 0.25)',
                     borderWidth: 4,
@@ -31,7 +37,7 @@ function initRadarChart() {
                 },
                 {
                     label: 'Onboarding',
-                    data: SCORES_ONBOARDING,
+                    data: scoresOnboard,
                     borderColor: '#FF1493',
                     backgroundColor: 'rgba(255, 20, 147, 0.2)',
                     borderWidth: 4,
@@ -51,7 +57,7 @@ function initRadarChart() {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Vendeur SCREENE',
+                    text: CURRENT_SCENARIO === 'equipe' ? 'Équipe SCREENE' : 'Vendeur SCREENE',
                     color: '#A21463',
                     font: {
                         family: "'JetBrains Mono', monospace",

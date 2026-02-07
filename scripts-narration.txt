@@ -1,0 +1,69 @@
+═══════════════════════════════════════════════════════════════════════════════
+                        BILANMETAGORA - SCRIPTS DE NARRATION
+═══════════════════════════════════════════════════════════════════════════════
+
+───────────────────────────────────────────────────────────────────────────────
+SLIDE 0 : RANG & ACCUEIL
+───────────────────────────────────────────────────────────────────────────────
+
+Titre visuel : Rang B - Rookie Vendeur
+
+Script audio :
+"Bonjour Alexandre ! Voici le bilan de votre parcours de simulation de vente. 
+Vous avez atteint le Rang B : Rookie Vendeur. Un excellent point de départ !"
+
+
+───────────────────────────────────────────────────────────────────────────────
+SLIDE 1 : STATISTIQUES CLÉS
+───────────────────────────────────────────────────────────────────────────────
+
+Titre visuel : 4 cartes statistiques
+- 24 Simulations
+- 18 Ventes réussies
+- 12 Jours actifs
+- 78 Score écoute active
+
+Script audio :
+"En 12 jours actifs, vous avez réalisé 24 simulations avec 18 ventes réussies. 
+Votre score d'écoute active est de 78 sur 100, ce qui montre une vraie capacité 
+d'adaptation."
+
+
+───────────────────────────────────────────────────────────────────────────────
+SLIDE 2 : RADAR SCREENE
+───────────────────────────────────────────────────────────────────────────────
+
+Titre visuel : Graphique radar 7 branches
+- Security
+- Comfort
+- Relational
+- Ego
+- Economy
+- Novelty
+- Ecology
+
+Légende :
+- Ligne rose : Évaluation Onboarding
+- Ligne bleue : Progression après 1 mois
+
+Script audio :
+"Voici votre profil Vendeur SCREENE. La ligne rose représente votre évaluation 
+à l'Onboarding, la ligne bleue votre progression après 1 mois. Belle évolution 
+sur la plupart des axes !"
+
+
+───────────────────────────────────────────────────────────────────────────────
+SLIDE 3 : CHOIX FINAUX
+───────────────────────────────────────────────────────────────────────────────
+
+Titre visuel : Hexagone Rang B + 2 boutons d'action
+
+Script audio :
+"Que souhaitez-vous faire maintenant ?"
+
+Choix proposés :
+→ Télécharger le report
+→ Lire les 5 tips pour m'améliorer
+
+
+
