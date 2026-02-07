@@ -155,12 +155,14 @@ class NarrativeController {
         if (objBar) setTimeout(() => { objBar.style.width = ei.objectionsScore + '%'; }, 400);
 
         // Populate flip card data
+        const badge = document.getElementById('flipBadge0');
         const ctx = document.getElementById('flipContext0');
         const resp = document.getElementById('flipResponse0');
         const diag = document.getElementById('flipDiagnostic0');
         const ideal = document.getElementById('flipIdeal0');
         const just = document.getElementById('flipJustification0');
 
+        if (badge) badge.textContent = `❌ ${card.phase.toUpperCase()} #${card.simNumber}`;
         if (ctx) ctx.textContent = card.front.context;
         if (resp) resp.textContent = `« ${card.front.yourResponse} »`;
         if (diag) diag.textContent = `→ ${card.front.diagnostic}`;
