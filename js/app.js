@@ -319,10 +319,10 @@ async function startExperience() {
                 avatarController.audioContext = globalAudioContext;
             }
 
-            // Mark as interacted and start
+            // Mark as interacted and start (builds slide map + configures visibility)
             narrativeController.userHasInteracted = true;
             console.log('Starting slide 0, avatar framesLoaded:', avatarController?.framesLoaded);
-            narrativeController.goToSlide(0);
+            narrativeController.start();
         }, 500);
 
     } catch (error) {
