@@ -54,25 +54,25 @@ class NarrativeController {
         return this.getNarrative()[this.currentSlide];
     }
 
-    // Build slide mapping based on scenario
+    // Build slide mapping: stores direct DOM references for active slides
     buildSlideMap() {
         const narrative = this.getNarrative();
-        this.slideMap = [];
+        this.slideMap = []; // Array of DOM elements
         const allSlides = document.querySelectorAll('.slide');
         
         narrative.forEach((item) => {
             for (let i = 0; i < allSlides.length; i++) {
                 if (allSlides[i].dataset.slideType === item.slideType) {
-                    this.slideMap.push(i);
+                    this.slideMap.push(allSlides[i]);
                     break;
                 }
             }
         });
     }
 
-    // Get the DOM slide index for current narrative slide
-    getDomSlideIndex() {
-        return this.slideMap[this.currentSlide] || this.currentSlide;
+    // Get the DOM element for current narrative slide
+    getActiveSlideElement() {
+        return this.slideMap[this.currentSlide] || null;
     }
 
     setupEventListeners() {
@@ -392,13 +392,15 @@ class NarrativeController {
     }
 
     updateSlideVisibility() {
-        const domIndex = this.getDomSlideIndex();
-        document.querySelectorAll('.slide').forEach((slide, index) => {
+        const activeEl = this.getActiveSlideElement();
+        // Hide ALL slides first
+        document.querySelectorAll('.slide').forEach(slide => {
             slide.classList.remove('active', 'exit');
-            if (index === domIndex) {
-                slide.classList.add('active');
-            }
         });
+        // Show only the active one
+        if (activeEl) {
+            activeEl.classList.add('active');
+        }
     }
 
     // Configure which slides are visible based on scenario
@@ -409,9 +411,11 @@ class NarrativeController {
         document.querySelectorAll('.slide').forEach(slide => {
             const type = slide.dataset.slideType;
             if (type && !activeTypes.includes(type)) {
-                slide.style.display = 'none';
+                // Completely remove from flow and DOM rendering
+                slide.classList.add('scenario-hidden');
+                slide.classList.remove('active', 'exit');
             } else {
-                slide.style.display = '';
+                slide.classList.remove('scenario-hidden');
             }
         });
     }

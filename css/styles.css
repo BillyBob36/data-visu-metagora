@@ -249,6 +249,12 @@ html, body {
     pointer-events: auto;
 }
 
+.slide.scenario-hidden {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
 .slide.exit {
     opacity: 0;
     transform: translateX(-100%);
