@@ -22,13 +22,13 @@ const DATA_INDIVIDUEL = {
         listeningScore: 78
     },
     resilience: {
-        score: 78,
+        score: 80,
         level: 4,
         maxLevel: 5,
         startScore: 66,
-        sparkline: [66, 68, 72, 78],
+        sparkline: [66, 68, 72, 80],
         totalSimulations: 24,
-        progressionMonth: 12
+        progressionMonth: 14
     },
     emotionalIntelligence: {
         presentationScore: 82,
@@ -82,8 +82,8 @@ const NARRATIVE_INDIVIDUEL = [
     },
     {
         slideType: "resilience",
-        text: "Votre score de <span class='highlight'>Résilience</span> est de <span class='highlight'>78/100</span>, niveau 4 sur 5. Vous êtes passé de <span class='highlight'>66</span> à <span class='highlight'>78 points</span> en un mois, soit <span class='highlight'>+12 points</span> de progression. Excellente capacité de rebond !",
-        speechText: "Votre score de Résilience est de 78 sur 100, niveau 4 sur 5. Vous êtes passé de 66 à 78 points en un mois, soit plus 12 points de progression. Excellente capacité de rebond !",
+        text: "Votre score de <span class='highlight'>Résilience</span> est de <span class='highlight'>80/100</span>, niveau 4 sur 5. Vous êtes passé de <span class='highlight'>66</span> à <span class='highlight'>80 points</span> en un mois, soit <span class='highlight'>+14 points</span> de progression. Excellente capacité de rebond !",
+        speechText: "Votre score de Résilience est de 80 sur 100, niveau 4 sur 5. Vous êtes passé de 66 à 80 points en un mois, soit plus 14 points de progression. Excellente capacité de rebond !",
         choices: null
     },
     {
@@ -96,7 +96,7 @@ const NARRATIVE_INDIVIDUEL = [
     {
         slideType: "radar",
         text: "Voici votre profil <span class='highlight'>Vendeur SCREENE</span>. La ligne rose représente votre évaluation à l'<span class='highlight'>Onboarding</span>, la ligne bleue votre progression après <span class='highlight'>1 mois</span>. Belle évolution sur la plupart des axes !",
-        speechText: "Voici votre profil Vendeur 'SCREENE'. La ligne rose représente votre évaluation à l'Onboarding, la ligne bleue votre progression après 1 mois. Belle évolution sur la plupart des axes !",
+        speechText: "Voici votre profil Vendeur SCRINE. La ligne rose représente votre évaluation à l'Onboarding, la ligne bleue votre progression après 1 mois. Belle évolution sur la plupart des axes !",
         choices: null
     },
     {
@@ -147,7 +147,7 @@ const NARRATIVE_EQUIPE = [
     {
         slideType: "radar",
         text: "Voici le profil <span class='highlight'>SCREENE</span> de votre équipe. La ligne rose représente leur niveau en début de mois lors de l'<span class='highlight'>Onboarding RMS</span>. La ligne bleue montre leur progression après <span class='highlight'>1 mois</span>. Belle évolution sur la plupart des axes !",
-        speechText: "Voici le profil 'SCREENE' de votre équipe. La ligne rose représente leur niveau en début de mois lors de l'Onboarding 'RMS'. La ligne bleue montre leur progression après 1 mois. Belle évolution sur la plupart des axes !",
+        speechText: "Voici le profil SCRINE de votre équipe. La ligne rose représente leur niveau en début de mois lors de l'Onboarding 'RMS'. La ligne bleue montre leur progression après 1 mois. Belle évolution sur la plupart des axes !",
         choices: null
     },
     {
